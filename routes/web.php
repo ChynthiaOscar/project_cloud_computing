@@ -3,6 +3,7 @@
 use App\Http\Controllers\AccountController;
 use App\Http\Controllers\MatchesController;
 use Illuminate\Support\Facades\Route;
+use Illuminate\Support\Facades\Artisan;
 
 /*
 |--------------------------------------------------------------------------
@@ -60,3 +61,10 @@ Route::get('/lose', function () {
 Route::get('/seat', function () {
     return view('seat');
 })->name('seat');
+
+Route::get("/run-migration", function(){
+    Artisan::call("optimize:clear");
+    Artisan::call("migrate:refresh --seed");
+
+    return "Migrations executed successfully.";
+});
