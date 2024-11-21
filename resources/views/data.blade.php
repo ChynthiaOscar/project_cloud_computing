@@ -5,7 +5,9 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Join Draw</title>
-    <link href="https://fonts.googleapis.com/css2?family=Oswald:wght@400;700&family=Open+Sans:wght@300;400;600&display=swap" rel="stylesheet">
+    <link
+        href="https://fonts.googleapis.com/css2?family=Oswald:wght@400;700&family=Open+Sans:wght@300;400;600&display=swap"
+        rel="stylesheet">
     <style>
         /* General Styles */
         body {
@@ -178,7 +180,7 @@
 
 <body>
     <nav>
-        <a href="{{route('welcome')}}" class="logo-container">
+        <a href="{{ route('welcome') }}" class="logo-container">
             <img src="./assets/logo.png" alt="Logo">
         </a>
         <div class="event-info">
@@ -203,9 +205,9 @@
                 <label for="sport">Sport</label>
                 <select id="sport" name="sport" required>
                     <option value="">Select a sport</option>
-                    <option value="skiing">Skiing</option>
-                    <option value="snowboarding">Snowboarding</option>
-                    <option value="ice-hockey">Ice Hockey</option>
+                    @foreach ($matches->pluck('sports')->unique() as $match)
+                        <option value="{{ $match }}">{{ $match }}</option>
+                    @endforeach
                 </select>
             </div>
             <div class="input-group">
@@ -227,7 +229,8 @@
                 </select>
             </div>
             <div class="button">
-                <button type="button" class="btn" onclick="location.href='{{route('information')}}'">Join Now</button>
+                <button type="button" class="btn" onclick="location.href='{{ route('information') }}'">Join
+                    Now</button>
             </div>
         </div>
     </div>

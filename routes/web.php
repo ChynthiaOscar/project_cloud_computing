@@ -1,6 +1,7 @@
 <?php
 
 use App\Http\Controllers\AccountController;
+use App\Http\Controllers\MatchesController;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -38,9 +39,7 @@ Route::get('/signup', function () {
 Route::post('/create', [AccountController::class, 'create'])->name('create');
 /* END AUTHENTICATIONS */
 
-Route::get('/data', function () {
-    return view('data');
-})->name('data');
+Route::get('/data', [MatchesController::class, 'index'])->name('data');
 
 Route::get('/information', function () {
     return view('information');
