@@ -5,7 +5,9 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>User Login</title>
-    <link href="https://fonts.googleapis.com/css2?family=Oswald:wght@400;700&family=Open+Sans:wght@300;400;600&display=swap" rel="stylesheet">
+    <link
+        href="https://fonts.googleapis.com/css2?family=Oswald:wght@400;700&family=Open+Sans:wght@300;400;600&display=swap"
+        rel="stylesheet">
     <style>
         /* General Styles */
         body {
@@ -101,7 +103,8 @@
             border: 8px solid #FCB131;
             padding: 20px;
             background-color: #00A651;
-            margin-top: 80px; /* Untuk offset dari navbar */
+            margin-top: 80px;
+            /* Untuk offset dari navbar */
         }
 
         .container {
@@ -207,7 +210,7 @@
 <body>
     <!-- Navbar -->
     <nav>
-        <a href="{{route('welcome')}}" class="logo-container">
+        <a href="{{ route('welcome') }}" class="logo-container">
             <img src="./assets/logo.png" alt="Logo">
         </a>
         <div class="event-info">
@@ -226,29 +229,35 @@
     <!-- Login Section -->
     <div class="outer-container">
         <div class="container">
-            <div class="border-line">
-                <img class="logo" src="./assets/logo.png" alt="Logo">
-            </div>
-            <div class="input-group">
-                <label for="username">Username Or Email Address*</label>
-                <input type="text" id="username" name="username" required>
-            </div>
-            <div class="input-group">
-                <label for="password">Password*</label>
-                <input type="password" id="password" name="password" required>
-            </div>
-            <div class="forgot-password">
-                <p>Forgot password?</p>
-            </div>
-            <div class="button">
-                <button type="button" class="btn" onclick="window.location.href='{{route('data')}}'">Log In</button>
-            </div>
+            <form action="{{ route('logging_in') }}" method="GET">
+                @csrf
+                <div class="border-line">
+                    <img class="logo" src="./assets/logo.png" alt="Logo">
+                </div>
+                <div class="input-group">
+                    <label for="email">Email Address*</label>
+                    <input type="text" id="email" name="email" required>
+                </div>
+                <div class="input-group">
+                    <label for="password">Password*</label>
+                    <input type="password" id="password" name="password" required>
+                </div>
+                <div class="forgot-password">
+                    <p>Forgot password?</p>
+                </div>
+                <div class="button">
+                    <button type="submit" class="btn">Log
+                        In</button>
+                </div>
+            </form>
             <div class="border-line">
                 <p><strong>Don't have an account</strong></p>
-                <p>Be part of the journey, celebrate champions, and stay connected with the latest updates and events from around the world.</p>
+                <p>Be part of the journey, celebrate champions, and stay connected with the latest updates and events
+                    from around the world.</p>
             </div>
             <div class="button">
-                <button type="button" class="btn" onclick="window.location.href='{{ route('signup') }}'">Create New Account</button>
+                <button type="button" class="btn" onclick="window.location.href='{{ route('signup') }}'">Create New
+                    Account</button>
             </div>
         </div>
     </div>

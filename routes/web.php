@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\AccountController;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -25,13 +26,16 @@ Route::get('/login', function () {
     return view('login');
 })->name('login');
 
+// Logging In
+Route::get('/logging_in', [AccountController::class, 'login'])->name('logging_in');
+
 // Register
 Route::get('/signup', function () {
     return view('signup');
 })->name('signup');
 
 // Create Account
-Route::post('/create', 'AccountController@create')->name('create');
+Route::post('/create', [AccountController::class, 'create'])->name('create');
 /* END AUTHENTICATIONS */
 
 Route::get('/data', function () {
