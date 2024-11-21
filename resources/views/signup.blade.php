@@ -92,7 +92,6 @@
             color: white;
         }
 
-
         .outer-container {
             display: flex;
             justify-content: center;
@@ -178,7 +177,6 @@
             padding: 10px 20px;
             font-size: 16px;
             text-align: center;
-            text-decoration: none;
             font-weight: 500;
             border: 2px solid #000000;
             border-radius: 25px;
@@ -186,6 +184,7 @@
             transition: background-color 0.3s ease;
             width: 20%;
             background-color: #0081C8;
+            cursor: pointer;
         }
 
         .button {
@@ -247,7 +246,7 @@
                 <a href="{{route('login')}}">I already have an account</a>
             </div>
             <div class="button">
-                <a href="{{route('login')}}" class="btn">Create My Account</a>
+                <button class="btn" type="submit">Create My Account</button>
             </div>
         </div>
     </div>

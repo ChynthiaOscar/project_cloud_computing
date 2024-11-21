@@ -165,12 +165,6 @@
             text-decoration: underline;
         }
 
-        .btn:hover {
-            background-color: #005f8e;
-            box-shadow: 0px 4px 6px rgba(0, 0, 0, 0.5);
-            transition: box-shadow 0.3s ease, background-color 0.3s ease;
-        }
-
         .btn {
             display: inline-block;
             padding: 10px 20px;
@@ -184,7 +178,15 @@
             transition: background-color 0.3s ease;
             width: 20%;
             background-color: #0081C8;
+            cursor: pointer;
         }
+
+        .btn:hover {
+            background-color: #005f8e;
+            box-shadow: 0px 4px 6px rgba(0, 0, 0, 0.5);
+            transition: box-shadow 0.3s ease, background-color 0.3s ease;
+        }
+
 
         .button {
             display: flex;
@@ -239,14 +241,14 @@
                 <p>Forgot password?</p>
             </div>
             <div class="button">
-                <a href="{{route('data')}}" class="btn">Log In</a>
+                <button type="button" class="btn" onclick="window.location.href='{{route('data')}}'">Log In</button>
             </div>
             <div class="border-line">
                 <p><strong>Don't have an account</strong></p>
                 <p>Be part of the journey, celebrate champions, and stay connected with the latest updates and events from around the world.</p>
             </div>
             <div class="button">
-                <a href="{{ route('signup') }}" class="btn">Create New Account</a>
+                <button type="button" class="btn" onclick="window.location.href='{{ route('signup') }}'">Create New Account</button>
             </div>
         </div>
     </div>

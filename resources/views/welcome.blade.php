@@ -162,7 +162,7 @@
         <!-- Navbar Links -->
         <div class="nav-links">
             <a href="{{ route('my_ticket') }}">My Tickets</a>
-            <a href="{{ route('login') }}" class="login-btn">Login</a>
+            <button class="login-btn" onclick="window.location.href='{{ route('login') }}'">Login</button>
         </div>
     </nav>
 
@@ -170,7 +170,7 @@
     <section class="welcome-section">
         <h1>Welcome to the Official Ticketing Platform of Winter Olympic 2026</h1>
         <p>Learn how to purchase tickets for all sessions of the upcoming Olympic and Paralympic Winter Games<br> and sign up to gain early access to ticket sales.</p>
-        <a href="{{ route('signup') }}" class="signup-btn">Sign Up</a>
+        <button class="signup-btn" onclick="window.location.href='{{ route('signup') }}'">Sign Up</button>
     </section>
 </body>
 

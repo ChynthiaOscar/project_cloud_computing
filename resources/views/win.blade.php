@@ -63,16 +63,19 @@
             align-items: center;
         }
 
-        .nav-links a {
-            text-decoration: none;
-            color: black;
-            font-size: 1rem;
+        .nav-links button {
+            background-color: white;
+            color: #20252f;
             padding: 8px 16px;
+            font-size: 1rem;
+            border: 2px solid #20252f;
             border-radius: 25px;
+            cursor: pointer;
             transition: background-color 0.3s, color 0.3s;
+            text-decoration: none;
         }
 
-        .nav-links a:hover {
+        .nav-links button:hover {
             background-color: #0081C8;
             color: white;
         }
@@ -118,6 +121,46 @@
             width: 15%;
         }
 
+        .card-container {
+            display: flex;
+            gap: 20px;
+            justify-content: center;
+            margin-bottom: 20px;
+        }
+
+        .card {
+            background-color: #f5f5f5;
+            border: 2px solid #dcdcdc;
+            border-radius: 10px;
+            padding: 15px;
+            width: 250px;
+            text-align: center;
+            cursor: pointer;
+            transition: border-color 0.3s;
+        }
+
+        .card:hover {
+            border-color: #0081C8;
+        }
+
+        /* Highlighted card style */
+        .card.selected {
+            border-color: #0081C8;
+            border-width: 3px;
+        }
+
+        .card h3 {
+            font-size: 1.2rem;
+            color: #000000;
+            margin: 10px 0;
+        }
+
+        .card p {
+            font-size: 1rem;
+            color: #333333;
+            margin: 5px 0;
+        }
+
         .btn:hover {
             background-color: #005f8e;
             box-shadow: 0px 4px 6px rgba(0, 0, 0, 0.5);
@@ -144,7 +187,7 @@
             text-decoration: none;
             justify-content: center;
             align-items: center;
-            margin-bottom: 140px;
+            margin-bottom: 30px;
         }
 
         .message {
@@ -165,7 +208,6 @@
             font-size: 1rem;
             font-weight: normal;
         }
-
     </style>
 </head>
 
@@ -183,8 +225,8 @@
             <div>6 - 15 MARCH 2026</div>
         </div>
         <div class="nav-links">
-            <a href="{{ route('my_ticket') }}">My Tickets</a>
-            <a href="{{ route('login') }}" class="login-btn">Login</a>
+            <button onclick="window.location.href='{{ route('my_ticket') }}'">My Tickets</button>
+            <button onclick="window.location.href='{{ route('login') }}'" class="login-btn">Login</button>
         </div>
     </nav>
 
@@ -196,14 +238,49 @@
             </div>
             <p class="message">
                 <strong>Congratulations</strong>, you have successfully secured the chance to purchase tickets for the Olympic 2026!<br>
-                <br><br><br>
-                <span>Please click the button below to proceed with your purchase.</span><br>
+                <br>
+                <span>Please select one of the cards below to proceed with the purchase.</span><br>
             </p>
+
+            <!-- Event Cards -->
+            <div class="card-container">
+                <!-- Card 1 -->
+                <div class="card" onclick="selectCard(this)">
+                    <h3>Ice Hockey</h3>
+                    <p>Canada</p>
+                    <p>Women's Ice Hockey</p>
+                    <p>12 February 2026, 10:00 AM</p>
+                </div>
+                <!-- Card 2 -->
+                <div class="card" onclick="selectCard(this)">
+                    <h3>Figure Skating</h3>
+                    <p>USA</p>
+                    <p>Men's Singles</p>
+                    <p>14 February 2026, 2:00 PM</p>
+                </div>
+                <!-- Card 3 -->
+                <div class="card" onclick="selectCard(this)">
+                    <h3>Ski Jumping</h3>
+                    <p>Japan</p>
+                    <p>Mixed Team</p>
+                    <p>16 February 2026, 3:30 PM</p>
+                </div>
+            </div>
+
             <div class="button">
-                <a href="{{ route('seat') }}" class="btn">Proceed to Purchase</a>
+                <button onclick="window.location.href='{{ route('seat') }}'" class="btn">Proceed to Purchase</button>
             </div>
         </div>
     </div>
+
+    <script>
+        function selectCard(selectedCard) {
+            document.querySelectorAll('.card').forEach(card => {
+                card.classList.remove('selected');
+            });
+            selectedCard.classList.add('selected');
+        }
+    </script>
 </body>
 
 </html>

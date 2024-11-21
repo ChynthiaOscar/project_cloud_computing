@@ -156,7 +156,6 @@
             font-size: 16px;
             text-align: center;
             font-weight: 500;
-            border: 2px solid #000000;
             border-radius: 25px;
             color: #FFFFFF;
             border: none;
@@ -165,7 +164,7 @@
             margin-bottom: 50px;
             width: 20%;
             background-color: #0081C8;
-            text-decoration: none;
+            cursor: pointer;
         }
 
         .button {
@@ -228,7 +227,7 @@
                 </select>
             </div>
             <div class="button">
-                <a href="{{route('information')}}" class="btn">Join Now</a>
+                <button type="button" class="btn" onclick="location.href='{{route('information')}}'">Join Now</button>
             </div>
         </div>
     </div>

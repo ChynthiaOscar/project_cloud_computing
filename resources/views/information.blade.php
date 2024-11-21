@@ -63,16 +63,19 @@
             align-items: center;
         }
 
-        .nav-links a {
+        .nav-links button {
             text-decoration: none;
             color: black;
             font-size: 1rem;
             padding: 8px 16px;
             border-radius: 25px;
+            background: none;
+            border: none;
+            cursor: pointer;
             transition: background-color 0.3s, color 0.3s;
         }
 
-        .nav-links a:hover {
+        .nav-links button:hover {
             background-color: #0081C8;
             color: white;
         }
@@ -137,21 +140,14 @@
             font-weight: 600;
             background-color: #0081C8;
             border-radius: 25px;
+            color: #FFFFFF;
             cursor: pointer;
             transition: background-color 0.3s;
         }
 
         .draw-button:hover {
             background-color: #EE334E;
-        }
-
-        .draw-button a {
-            color: #FFFFFF;
-            text-decoration: none;
-        }
-
-        .draw-button a:hover {
-            color: #FFFFFF; 
+            
         }
 
         .label {
@@ -175,8 +171,8 @@
             <div>6 - 15 MARCH 2026</div>
         </div>
         <div class="nav-links">
-            <a href="{{ route('my_ticket') }}">My Tickets</a>
-            <a href="{{ route('login') }}" class="login-btn">Login</a>
+            <button onclick="window.location.href='{{ route('my_ticket') }}'">My Tickets</button>
+            <button onclick="window.location.href='{{ route('login') }}'" class="login-btn">Login</button>
         </div>
     </nav>
 
@@ -193,10 +189,8 @@
             </p>
             <br><br>
             <p class="label">Want to participate in another ticket draw?</p>
-            <button class="draw-button">
-                <a href="{{route('data')}}">
-                    Join Another Ticket Draw
-                </a>
+            <button class="draw-button" onclick="window.location.href='{{route('data')}}'">
+                Join Another Ticket Draw
             </button>
         </div>
     </div>
