@@ -13,17 +13,26 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
+/* MAIN PAGE */
+Route::get('/', function () {
+    return view('welcome');
+})->name('welcome');
+/* END MAIN PAGE */
+
+/* AUTHENTICATIONS */
+// Login
 Route::get('/login', function () {
     return view('login');
 })->name('login');
 
+// Register
 Route::get('/signup', function () {
     return view('signup');
 })->name('signup');
 
-Route::get('/', function () {
-    return view('welcome');
-})->name('welcome');
+// Create Account
+Route::post('/create', 'AccountController@create')->name('create');
+/* END AUTHENTICATIONS */
 
 Route::get('/data', function () {
     return view('data');
