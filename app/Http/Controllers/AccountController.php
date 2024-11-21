@@ -22,7 +22,30 @@ class AccountController extends Controller
             return response()->json($formfield->errors(), 400);
         }
 
+        $data['password'] = bcrypt($data['password']);
+
         Account::create($data);
-        return redirect()->route('login');
+        return redirect()->route('login')->with('success', 'Account created successfully');
+    }
+
+    public function login(Request $request)
+    {
+        $data = $request->all();
+
+        $formfield = Validator::make($data, [
+            'email' => 'required|email',
+            'password' => 'required|string'
+        ]);
+
+        if ($formfield->fails()) {
+            return response()->json($formfield->errors(), 400);
+        }
+
+        $account = Account::where('email', $data['email'])->first();
+        if (!$account || $data['email'] != $account->email || !password_verify($data['password'], $account->password)) {
+            return redirect()->route('login')->with('error', 'Invalid email or password');
+        } else {
+            return redirect()->route('data');
+        }
     }
 }

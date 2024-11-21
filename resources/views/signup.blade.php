@@ -1,10 +1,13 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>User Login</title>
-    <link href="https://fonts.googleapis.com/css2?family=Oswald:wght@400;700&family=Open+Sans:wght@300;400;600&display=swap" rel="stylesheet">
+    <link
+        href="https://fonts.googleapis.com/css2?family=Oswald:wght@400;700&family=Open+Sans:wght@300;400;600&display=swap"
+        rel="stylesheet">
     <style>
         /* General Styles */
         body {
@@ -201,10 +204,11 @@
         }
     </style>
 </head>
+
 <body>
     <!-- Navbar -->
     <nav>
-        <a href="{{route('welcome')}}" class="logo-container">
+        <a href="{{ route('welcome') }}" class="logo-container">
             <img src="./assets/logo.png" alt="Logo">
         </a>
         <div class="event-info">
@@ -223,32 +227,37 @@
     <!-- Main Content -->
     <div class="outer-container">
         <div class="container">
-            <div class="border-line">
-                <img class="logo" src="./assets/logo.png" alt="Logo">
-            </div>
-            <div class="input-group">
-                <label for="username">Name</label>
-                <input type="text" id="username" name="username" required>
-            </div>
-            <div class="input-group">
-                <label for="username">Username Or Email Address</label>
-                <input type="text" id="username" name="username" required>
-            </div>
-            <div class="input-group">
-                <label for="password">Password</label>
-                <input type="password" id="password" name="password" required>
-            </div>
-            <div class="input-group">
-                <label for="password">Re-enter Password</label>
-                <input type="password" id="password" name="password" required>
-            </div>
-            <div class="forgot-password">
-                <a href="{{route('login')}}">I already have an account</a>
-            </div>
-            <div class="button">
-                <button class="btn" type="submit"  onclick="window.location.href='{{ route('login') }}'">>Create My Account</button>
-            </div>
+            <form action="{{route('create')}}" method="POST">
+                @csrf
+                <div class="border-line">
+                    <img class="logo" src="./assets/logo.png" alt="Logo">
+                </div>
+                <div class="input-group">
+                    <label for="name">Name</label>
+                    <input type="text" id="name" name="name" required>
+                </div>
+                <div class="input-group">
+                    <label for="email">Email Address</label>
+                    <input type="email" id="email" name="email" required>
+                </div>
+                <div class="input-group">
+                    <label for="password">Password</label>
+                    <input type="password" id="password" name="password" required>
+                </div>
+                <div class="input-group">
+                    <label for="password">Re-enter Password</label>
+                    <input type="password" id="password" name="password" required>
+                </div>
+                <div class="forgot-password">
+                    <a href="{{ route('login') }}">I already have an account</a>
+                </div>
+                <div class="button">
+                    <button class="btn" type="submit">Create
+                        My Account</button>
+                </div>
+            </form>
         </div>
     </div>
 </body>
+
 </html>
