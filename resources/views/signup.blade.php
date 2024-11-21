@@ -246,7 +246,7 @@
                 <a href="{{route('login')}}">I already have an account</a>
             </div>
             <div class="button">
-                <button class="btn" type="submit">Create My Account</button>
+                <button class="btn" type="submit"  onclick="window.location.href='{{ route('login') }}'">>Create My Account</button>
             </div>
         </div>
     </div>
