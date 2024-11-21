@@ -14,8 +14,9 @@
             background-color: #0081C8;
             display: flex;
             justify-content: center;
-            align-items: center;
             font-family: 'Open Sans', sans-serif;
+            height: 95vh;
+            text-align: center;
         }
 
         nav {
@@ -97,108 +98,50 @@
             display: flex;
             justify-content: center;
             width: 90%;
-            height: 80%;
             border: 8px solid #FCB131;
             padding: 20px;
             background-color: #00A651;
-            margin-top: 80px; /* Untuk offset dari navbar */
+            margin-top: 80px;
         }
 
         .container {
             justify-content: center;
             width: 100%;
             border: 5px solid #EE334E;
-            padding: 20px;
-            background-color: #ffffff;
-        }
-
-        .border-line h2 {
-            font-size: 30px;
-            margin-bottom: 40px;
-            color: #000000;
-            text-align: center;
+            padding-top: 100px;
+            padding-bottom: 50px;
+            background-color: #EE334E;
         }
 
         .border-line img.logo {
             display: block;
-            margin: 0 auto 40px;
+            margin: 0 auto 20px;
             width: 15%;
         }
 
-        .input-group {
-            margin-bottom: 10px;
-        }
-
-        .input-group label {
-            display: block;
-            margin-bottom: 5px;
-            margin-left: 350px;
-            color: #000000;
-        }
-
-        .input-group input {
-            width: 50%;
-            padding: 8px;
-            border: 1px solid #ccc;
-            border-radius: 3px;
-            margin-left: 25%;
-        }
-
-        .input-group input:focus {
-            outline: none;
-            border-color: #007bff;
-        }
-
-        .forgot-password {
-            color: #000000;
-            cursor: pointer;
-            display: flex;
-            justify-content: center;
-        }
-
-        .forgot-password p {
-            text-decoration: none;
-            transition: text-decoration 0.3s ease;
-        }
-
-        .forgot-password p:hover {
-            text-decoration: underline;
-        }
-
-        .btn:hover {
-            background-color: #005f8e;
-            box-shadow: 0px 4px 6px rgba(0, 0, 0, 0.5);
-            transition: box-shadow 0.3s ease, background-color 0.3s ease;
-        }
-
-        .btn {
-            display: inline-block;
-            padding: 10px 20px;
-            font-size: 16px;
-            text-align: center;
-            text-decoration: none;
-            font-weight: 500;
-            border: 2px solid #000000;
-            border-radius: 25px;
+        .message {
+            font-size: 1.5rem;
+            font-weight: 400;
             color: #FFFFFF;
-            transition: background-color 0.3s ease;
-            width: 20%;
-            background-color: #0081C8;
+            margin-bottom: 100px;
         }
 
-        .button {
-            display: flex;
-            text-decoration: none;
-            justify-content: center;
-            align-items: center;
-            margin-bottom: 20px;
+        .message strong {
+            font-size: 2rem;
+            font-weight: 700;
+            color: #FFFFFF;
+            text-shadow: 2px 2px 4px #000000; /* Outline effect */
         }
 
-        .border-line p {
-            text-align: center;
-            color: #000000;
-            margin-bottom: 10px;
+        .additional-message {
+            font-size: 1.2rem;
+            color: #FFFFFF;
         }
+
+        .label {
+            color: #EE334E;
+        }
+
     </style>
 </head>
 
@@ -221,33 +164,14 @@
         </div>
     </nav>
 
-    <!-- Login Section -->
     <div class="outer-container">
         <div class="container">
-            <div class="border-line">
-                <img class="logo" src="./assets/logo.png" alt="Logo">
-            </div>
-            <div class="input-group">
-                <label for="username">Username Or Email Address*</label>
-                <input type="text" id="username" name="username" required>
-            </div>
-            <div class="input-group">
-                <label for="password">Password*</label>
-                <input type="password" id="password" name="password" required>
-            </div>
-            <div class="forgot-password">
-                <p>Forgot password?</p>
-            </div>
-            <div class="button">
-                <a href="{{route('data')}}" class="btn">Log In</a>
-            </div>
-            <div class="border-line">
-                <p><strong>Don't have an account</strong></p>
-                <p>Be part of the journey, celebrate champions, and stay connected with the latest updates and events from around the world.</p>
-            </div>
-            <div class="button">
-                <a href="{{ route('signup') }}" class="btn">Create New Account</a>
-            </div>
+            <p class="message">
+                Sorry, you were unlucky in this ticket draw. Please check again for the next draw on <br><br><strong>JUNE 26, 2025 at 00:00</strong>
+            </p>
+            <p class="additional-message">
+                Thank you for participating in this ticket draw, and we hope you are lucky enough to get the chance to purchase tickets in the next draw.
+            </p>
         </div>
     </div>
 </body>

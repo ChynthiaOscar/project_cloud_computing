@@ -101,7 +101,7 @@
             border: 8px solid #FCB131;
             padding: 20px;
             background-color: #00A651;
-            margin-top: 80px; /* Untuk offset dari navbar */
+            margin-top: 80px;
         }
 
         .container {
@@ -112,57 +112,10 @@
             background-color: #ffffff;
         }
 
-        .border-line h2 {
-            font-size: 30px;
-            margin-bottom: 40px;
-            color: #000000;
-            text-align: center;
-        }
-
         .border-line img.logo {
             display: block;
             margin: 0 auto 40px;
             width: 15%;
-        }
-
-        .input-group {
-            margin-bottom: 10px;
-        }
-
-        .input-group label {
-            display: block;
-            margin-bottom: 5px;
-            margin-left: 350px;
-            color: #000000;
-        }
-
-        .input-group input {
-            width: 50%;
-            padding: 8px;
-            border: 1px solid #ccc;
-            border-radius: 3px;
-            margin-left: 25%;
-        }
-
-        .input-group input:focus {
-            outline: none;
-            border-color: #007bff;
-        }
-
-        .forgot-password {
-            color: #000000;
-            cursor: pointer;
-            display: flex;
-            justify-content: center;
-        }
-
-        .forgot-password p {
-            text-decoration: none;
-            transition: text-decoration 0.3s ease;
-        }
-
-        .forgot-password p:hover {
-            text-decoration: underline;
         }
 
         .btn:hover {
@@ -191,14 +144,28 @@
             text-decoration: none;
             justify-content: center;
             align-items: center;
-            margin-bottom: 20px;
+            margin-bottom: 140px;
         }
 
-        .border-line p {
-            text-align: center;
+        .message {
+            font-size: 1.5rem;
+            font-weight: 600;
             color: #000000;
-            margin-bottom: 10px;
+            text-align: center;
+            margin-top: 50px;
         }
+
+        .message strong {
+            font-size: 1.8rem;
+            font-weight: 700;
+            color: #00A651;
+        }
+
+        .message span {
+            font-size: 1rem;
+            font-weight: normal;
+        }
+
     </style>
 </head>
 
@@ -221,32 +188,19 @@
         </div>
     </nav>
 
-    <!-- Login Section -->
+    <!-- Success Message Section -->
     <div class="outer-container">
         <div class="container">
             <div class="border-line">
                 <img class="logo" src="./assets/logo.png" alt="Logo">
             </div>
-            <div class="input-group">
-                <label for="username">Username Or Email Address*</label>
-                <input type="text" id="username" name="username" required>
-            </div>
-            <div class="input-group">
-                <label for="password">Password*</label>
-                <input type="password" id="password" name="password" required>
-            </div>
-            <div class="forgot-password">
-                <p>Forgot password?</p>
-            </div>
+            <p class="message">
+                <strong>Congratulations</strong>, you have successfully secured the chance to purchase tickets for the Olympic 2026!<br>
+                <br><br><br>
+                <span>Please click the button below to proceed with your purchase.</span><br>
+            </p>
             <div class="button">
-                <a href="{{route('data')}}" class="btn">Log In</a>
-            </div>
-            <div class="border-line">
-                <p><strong>Don't have an account</strong></p>
-                <p>Be part of the journey, celebrate champions, and stay connected with the latest updates and events from around the world.</p>
-            </div>
-            <div class="button">
-                <a href="{{ route('signup') }}" class="btn">Create New Account</a>
+                <a href="{{ route('seat') }}" class="btn">Proceed to Purchase</a>
             </div>
         </div>
     </div>

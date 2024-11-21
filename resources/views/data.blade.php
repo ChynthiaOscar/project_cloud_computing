@@ -4,7 +4,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>User Login</title>
+    <title>Join Draw</title>
     <link href="https://fonts.googleapis.com/css2?family=Oswald:wght@400;700&family=Open+Sans:wght@300;400;600&display=swap" rel="stylesheet">
     <style>
         /* General Styles */
@@ -32,7 +32,6 @@
             box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
         }
 
-        /* Logo Section */
         .logo-container {
             display: flex;
             align-items: center;
@@ -101,7 +100,7 @@
             border: 8px solid #FCB131;
             padding: 20px;
             background-color: #00A651;
-            margin-top: 80px; /* Untuk offset dari navbar */
+            margin-top: 80px;
         }
 
         .container {
@@ -126,43 +125,23 @@
         }
 
         .input-group {
-            margin-bottom: 10px;
+            margin-bottom: 20px;
+            text-align: center;
         }
 
         .input-group label {
+            font-size: 16px;
+            font-weight: bold;
             display: block;
             margin-bottom: 5px;
-            margin-left: 350px;
             color: #000000;
         }
 
-        .input-group input {
-            width: 50%;
+        .input-group select {
+            width: 40%;
             padding: 8px;
             border: 1px solid #ccc;
             border-radius: 3px;
-            margin-left: 25%;
-        }
-
-        .input-group input:focus {
-            outline: none;
-            border-color: #007bff;
-        }
-
-        .forgot-password {
-            color: #000000;
-            cursor: pointer;
-            display: flex;
-            justify-content: center;
-        }
-
-        .forgot-password p {
-            text-decoration: none;
-            transition: text-decoration 0.3s ease;
-        }
-
-        .forgot-password p:hover {
-            text-decoration: underline;
         }
 
         .btn:hover {
@@ -176,34 +155,29 @@
             padding: 10px 20px;
             font-size: 16px;
             text-align: center;
-            text-decoration: none;
             font-weight: 500;
             border: 2px solid #000000;
             border-radius: 25px;
             color: #FFFFFF;
+            border: none;
             transition: background-color 0.3s ease;
+            margin-top: 20px;
+            margin-bottom: 50px;
             width: 20%;
             background-color: #0081C8;
+            text-decoration: none;
         }
 
         .button {
             display: flex;
-            text-decoration: none;
             justify-content: center;
             align-items: center;
             margin-bottom: 20px;
-        }
-
-        .border-line p {
-            text-align: center;
-            color: #000000;
-            margin-bottom: 10px;
         }
     </style>
 </head>
 
 <body>
-    <!-- Navbar -->
     <nav>
         <a href="{{route('welcome')}}" class="logo-container">
             <img src="./assets/logo.png" alt="Logo">
@@ -221,32 +195,40 @@
         </div>
     </nav>
 
-    <!-- Login Section -->
     <div class="outer-container">
         <div class="container">
             <div class="border-line">
                 <img class="logo" src="./assets/logo.png" alt="Logo">
             </div>
             <div class="input-group">
-                <label for="username">Username Or Email Address*</label>
-                <input type="text" id="username" name="username" required>
+                <label for="sport">Sport</label>
+                <select id="sport" name="sport" required>
+                    <option value="">Select a sport</option>
+                    <option value="skiing">Skiing</option>
+                    <option value="snowboarding">Snowboarding</option>
+                    <option value="ice-hockey">Ice Hockey</option>
+                </select>
             </div>
             <div class="input-group">
-                <label for="password">Password*</label>
-                <input type="password" id="password" name="password" required>
+                <label for="nationality">Nationality</label>
+                <select id="nationality" name="nationality" required>
+                    <option value="">Select nationality</option>
+                    <option value="usa">USA</option>
+                    <option value="canada">Canada</option>
+                    <option value="france">France</option>
+                </select>
             </div>
-            <div class="forgot-password">
-                <p>Forgot password?</p>
+            <div class="input-group">
+                <label for="date">Date</label>
+                <select id="date" name="date" required>
+                    <option value="">Select date</option>
+                    <option value="2026-02-06">Feb 6, 2026</option>
+                    <option value="2026-02-07">Feb 7, 2026</option>
+                    <option value="2026-02-08">Feb 8, 2026</option>
+                </select>
             </div>
             <div class="button">
-                <a href="{{route('data')}}" class="btn">Log In</a>
-            </div>
-            <div class="border-line">
-                <p><strong>Don't have an account</strong></p>
-                <p>Be part of the journey, celebrate champions, and stay connected with the latest updates and events from around the world.</p>
-            </div>
-            <div class="button">
-                <a href="{{ route('signup') }}" class="btn">Create New Account</a>
+                <a href="{{route('information')}}" class="btn">Join Now</a>
             </div>
         </div>
     </div>

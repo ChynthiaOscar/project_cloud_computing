@@ -97,11 +97,10 @@
             display: flex;
             justify-content: center;
             width: 90%;
-            height: 80%;
             border: 8px solid #FCB131;
             padding: 20px;
             background-color: #00A651;
-            margin-top: 80px; /* Untuk offset dari navbar */
+            margin-top: 80px; /* Offset from navbar */
         }
 
         .container {
@@ -110,95 +109,55 @@
             border: 5px solid #EE334E;
             padding: 20px;
             background-color: #ffffff;
-        }
-
-        .border-line h2 {
-            font-size: 30px;
-            margin-bottom: 40px;
-            color: #000000;
             text-align: center;
         }
 
         .border-line img.logo {
             display: block;
-            margin: 0 auto 40px;
+            margin: 0 auto 20px;
             width: 15%;
         }
 
-        .input-group {
-            margin-bottom: 10px;
+        .message {
+            font-size: 1.2rem;
+            font-weight: 400;
+            color: #333;
         }
 
-        .input-group label {
-            display: block;
-            margin-bottom: 5px;
-            margin-left: 350px;
-            color: #000000;
+        .message strong {
+            font-size: 2rem;
+            font-weight: 700;
+            color: #0081C8;
         }
 
-        .input-group input {
-            width: 50%;
-            padding: 8px;
-            border: 1px solid #ccc;
-            border-radius: 3px;
-            margin-left: 25%;
-        }
-
-        .input-group input:focus {
-            outline: none;
-            border-color: #007bff;
-        }
-
-        .forgot-password {
-            color: #000000;
-            cursor: pointer;
-            display: flex;
-            justify-content: center;
-        }
-
-        .forgot-password p {
-            text-decoration: none;
-            transition: text-decoration 0.3s ease;
-        }
-
-        .forgot-password p:hover {
-            text-decoration: underline;
-        }
-
-        .btn:hover {
-            background-color: #005f8e;
-            box-shadow: 0px 4px 6px rgba(0, 0, 0, 0.5);
-            transition: box-shadow 0.3s ease, background-color 0.3s ease;
-        }
-
-        .btn {
-            display: inline-block;
+        .draw-button {
+            margin-bottom: 40px;
             padding: 10px 20px;
-            font-size: 16px;
-            text-align: center;
-            text-decoration: none;
-            font-weight: 500;
-            border: 2px solid #000000;
-            border-radius: 25px;
-            color: #FFFFFF;
-            transition: background-color 0.3s ease;
-            width: 20%;
+            font-size: 1rem;
+            font-weight: 600;
             background-color: #0081C8;
+            border-radius: 25px;
+            cursor: pointer;
+            transition: background-color 0.3s;
         }
 
-        .button {
-            display: flex;
+        .draw-button:hover {
+            background-color: #EE334E;
+        }
+
+        .draw-button a {
+            color: #FFFFFF;
             text-decoration: none;
-            justify-content: center;
-            align-items: center;
-            margin-bottom: 20px;
         }
 
-        .border-line p {
-            text-align: center;
-            color: #000000;
-            margin-bottom: 10px;
+        .draw-button a:hover {
+            color: #FFFFFF; 
         }
+
+        .label {
+            color: #EE334E;
+        }
+
     </style>
 </head>
 
@@ -227,27 +186,18 @@
             <div class="border-line">
                 <img class="logo" src="./assets/logo.png" alt="Logo">
             </div>
-            <div class="input-group">
-                <label for="username">Username Or Email Address*</label>
-                <input type="text" id="username" name="username" required>
-            </div>
-            <div class="input-group">
-                <label for="password">Password*</label>
-                <input type="password" id="password" name="password" required>
-            </div>
-            <div class="forgot-password">
-                <p>Forgot password?</p>
-            </div>
-            <div class="button">
-                <a href="{{route('data')}}" class="btn">Log In</a>
-            </div>
-            <div class="border-line">
-                <p><strong>Don't have an account</strong></p>
-                <p>Be part of the journey, celebrate champions, and stay connected with the latest updates and events from around the world.</p>
-            </div>
-            <div class="button">
-                <a href="{{ route('signup') }}" class="btn">Create New Account</a>
-            </div>
+            <p class="message">
+                You have successfully registered as part of the Olympic draw tickets for this event. 
+                <br><br>
+                Please return to this website on <br><br><strong>JUNE 25, 2025 at 00:00</strong><br><br> to proceed with purchasing tickets if you are lucky enough to win the draw.
+            </p>
+            <br><br>
+            <p class="label">Want to participate in another ticket draw?</p>
+            <button class="draw-button">
+                <a href="{{route('data')}}">
+                    Join Another Ticket Draw
+                </a>
+            </button>
         </div>
     </div>
 </body>

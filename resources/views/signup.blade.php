@@ -1,6 +1,5 @@
 <!DOCTYPE html>
 <html lang="en">
-
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -10,7 +9,7 @@
         /* General Styles */
         body {
             margin: 0;
-            padding: 0;
+            padding-top: 80px;
             background-color: #0081C8;
             display: flex;
             justify-content: center;
@@ -93,15 +92,15 @@
             color: white;
         }
 
+
         .outer-container {
             display: flex;
             justify-content: center;
             width: 90%;
-            height: 80%;
+            height: auto;
             border: 8px solid #FCB131;
             padding: 20px;
             background-color: #00A651;
-            margin-top: 80px; /* Untuk offset dari navbar */
         }
 
         .container {
@@ -121,12 +120,12 @@
 
         .border-line img.logo {
             display: block;
-            margin: 0 auto 40px;
+            margin: 0 auto 20px;
             width: 15%;
         }
 
         .input-group {
-            margin-bottom: 10px;
+            margin-bottom: 15px;
         }
 
         .input-group label {
@@ -154,14 +153,16 @@
             cursor: pointer;
             display: flex;
             justify-content: center;
+            margin-bottom: 10px;
+            margin-top: 20px;
         }
 
-        .forgot-password p {
+        .forgot-password a {
             text-decoration: none;
             transition: text-decoration 0.3s ease;
         }
 
-        .forgot-password p:hover {
+        .forgot-password a:hover {
             text-decoration: underline;
         }
 
@@ -171,6 +172,7 @@
             transition: box-shadow 0.3s ease, background-color 0.3s ease;
         }
 
+        /* Buttons */
         .btn {
             display: inline-block;
             padding: 10px 20px;
@@ -188,7 +190,6 @@
 
         .button {
             display: flex;
-            text-decoration: none;
             justify-content: center;
             align-items: center;
             margin-bottom: 20px;
@@ -201,7 +202,6 @@
         }
     </style>
 </head>
-
 <body>
     <!-- Navbar -->
     <nav>
@@ -221,35 +221,35 @@
         </div>
     </nav>
 
-    <!-- Login Section -->
+    <!-- Main Content -->
     <div class="outer-container">
         <div class="container">
             <div class="border-line">
                 <img class="logo" src="./assets/logo.png" alt="Logo">
             </div>
             <div class="input-group">
-                <label for="username">Username Or Email Address*</label>
+                <label for="username">Name</label>
                 <input type="text" id="username" name="username" required>
             </div>
             <div class="input-group">
-                <label for="password">Password*</label>
+                <label for="username">Username Or Email Address</label>
+                <input type="text" id="username" name="username" required>
+            </div>
+            <div class="input-group">
+                <label for="password">Password</label>
+                <input type="password" id="password" name="password" required>
+            </div>
+            <div class="input-group">
+                <label for="password">Re-enter Password</label>
                 <input type="password" id="password" name="password" required>
             </div>
             <div class="forgot-password">
-                <p>Forgot password?</p>
+                <a href="{{route('login')}}">I already have an account</a>
             </div>
             <div class="button">
-                <a href="{{route('data')}}" class="btn">Log In</a>
-            </div>
-            <div class="border-line">
-                <p><strong>Don't have an account</strong></p>
-                <p>Be part of the journey, celebrate champions, and stay connected with the latest updates and events from around the world.</p>
-            </div>
-            <div class="button">
-                <a href="{{ route('signup') }}" class="btn">Create New Account</a>
+                <a href="{{route('login')}}" class="btn">Create My Account</a>
             </div>
         </div>
     </div>
 </body>
-
 </html>
