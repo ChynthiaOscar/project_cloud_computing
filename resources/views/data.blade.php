@@ -214,18 +214,12 @@
                 <label for="nationality">Nationality</label>
                 <select id="nationality" name="nationality" required>
                     <option value="">Select nationality</option>
-                    <option value="usa">USA</option>
-                    <option value="canada">Canada</option>
-                    <option value="france">France</option>
                 </select>
             </div>
             <div class="input-group">
                 <label for="date">Date</label>
                 <select id="date" name="date" required>
                     <option value="">Select date</option>
-                    <option value="2026-02-06">Feb 6, 2026</option>
-                    <option value="2026-02-07">Feb 7, 2026</option>
-                    <option value="2026-02-08">Feb 8, 2026</option>
                 </select>
             </div>
             <div class="button">
@@ -235,5 +229,59 @@
         </form>
     </div>
 </body>
+
+<script src="https://code.jquery.com/jquery-3.7.1.min.js"
+    integrity="sha256-/JqT3SQfawRcv/BIHPThkBvs0OEvtFFmqPF/lYI/Cxo=" crossorigin="anonymous"></script>
+
+<script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+
+<script>
+    $(document).ready(function() {
+        $('#sport').change(function() {
+            const sport = $(this).val();
+            $('#nationality').html('<option value="">Loading...</option>');
+
+            $.ajax({
+                url: '/get-nationalities',
+                type: 'POST',
+                data: {
+                    sport: sport,
+                    _token: '{{ csrf_token() }}'
+                },
+                success: function(data) {
+                    $('#nationality').html('<option value="">Select nationality</option>');
+                    data.forEach(function(item) {
+                        $('#nationality').append('<option value="' + item + '">' +
+                            item + '</option>');
+                    });
+                }
+            });
+        });
+
+        $('#nationality').change(function() {
+            const sport = $('#sport').val();
+            const nationality = $(this).val();
+            $('#date').html('<option value="">Loading...</option>');
+
+            $.ajax({
+                url: '/get-dates',
+                type: 'POST',
+                data: {
+                    sport: sport,
+                    nationality: nationality,
+                    _token: '{{ csrf_token() }}'
+                },
+                success: function(data) {
+                    $('#date').html('<option value="">Select date</option>');
+                    console.log(data);
+                    data.forEach(function(item) {
+                        $('#date').append('<option value="' + item + '">' + item +
+                            '</option>');
+                    });
+                }
+            });
+        });
+    });
+</script>
 
 </html>

@@ -40,8 +40,17 @@ Route::get('/signup', function () {
 Route::post('/create', [AccountController::class, 'create'])->name('create');
 /* END AUTHENTICATIONS */
 
+/* DRAW TICKET */
+// Draw Ticket Form
 Route::get('/data', [MatchesController::class, 'index'])->name('data');
 
+// Get Nationality Ajax
+Route::post('/get-nationalities', [MatchesController::class, 'getNationalitiesBySport']);
+
+// Get Dates Ajax
+Route::post('/get-dates', [MatchesController::class, 'getDatesBySportAndNationality']);
+
+/* END DRAW TICKET */
 Route::get('/information', function () {
     return view('information');
 })->name('information');
