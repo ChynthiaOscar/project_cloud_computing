@@ -4,10 +4,8 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>User Login</title>
-    <link
-        href="https://fonts.googleapis.com/css2?family=Oswald:wght@400;700&family=Open+Sans:wght@300;400;600&display=swap"
-        rel="stylesheet">
+    <title>User Registration</title>
+    <link href="https://fonts.googleapis.com/css2?family=Oswald:wght@400;700&family=Open+Sans:wght@300;400;600&display=swap" rel="stylesheet">
     <style>
         /* General Styles */
         body {
@@ -103,6 +101,7 @@
             border: 8px solid #FCB131;
             padding: 20px;
             background-color: #00A651;
+            margin-bottom: 20px;
         }
 
         .container {
@@ -233,27 +232,30 @@
                     <img class="logo" src="./assets/logo.png" alt="Logo">
                 </div>
                 <div class="input-group">
-                    <label for="name">Username</label>
-                    <input type="text" id="name" name="name" required>
+                    <label for="first-name">First Name</label>
+                    <input type="text" id="first-name" name="first_name" required>
                 </div>
                 <div class="input-group">
-                    <label for="email">Email Address</label>
-                    <input type="email" id="email" name="email" required>
+                    <label for="surname">Surname</label>
+                    <input type="text" id="surname" name="surname" required>
                 </div>
                 <div class="input-group">
-                    <label for="password">Password</label>
-                    <input type="password" id="password" name="password" required>
+                    <label for="dob">Date of Birth</label>
+                    <input type="date" id="dob" name="date_of_birth" required>
                 </div>
                 <div class="input-group">
-                    <label for="password">Re-enter Password</label>
-                    <input type="password" id="password" name="password" required>
+                    <label for="country">Country of Residence</label>
+                    <input type="text" id="country" name="country_of_residence" required>
+                </div>
+                <div class="input-group">
+                    <label for="postcode">Postcode (Optional)</label>
+                    <input type="text" id="postcode" name="postcode">
                 </div>
                 <div class="forgot-password">
                     <a href="{{ route('login') }}">I already have an account</a>
                 </div>
                 <div class="button">
-                    <button class="btn" type="submit" onclick="window.location.href='{{ route('login') }}'">Create
-                        My Account</button>
+                    <button class="btn" type="submit" onclick="window.location.href='{{ route('signup') }}'">Next</button>
                 </div>
             </form>
         </div>

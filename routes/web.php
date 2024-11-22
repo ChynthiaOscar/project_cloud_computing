@@ -61,3 +61,7 @@ Route::get('/lose', function () {
 Route::get('/seat', function () {
     return view('seat');
 })->name('seat');
+
+Route::get('/about_me', function () {
+    return view('about_me');
+})->name('about_me');
