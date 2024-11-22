@@ -16,6 +16,11 @@ return new class extends Migration
             $table->string('name');
             $table->string('email')->unique();
             $table->string('password');
+            $table->string('first_name')->nullable();
+            $table->string('surname')->nullable();
+            $table->date('date_of_birth')->nullable();
+            $table->string('country_of_residence')->nullable();
+            $table->string('postcode')->nullable();
             $table->timestamps();
         });
     }

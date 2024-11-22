@@ -4,12 +4,16 @@ namespace App\Http\Controllers;
 
 use App\Models\Matches;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
 
 class MatchesController extends Controller
 {
     // index
     public function index()
     {
+        $user = Auth::guard('account')->user();
+
+        // Fetch data specific to account user
         $matches = Matches::all();
         return view('data')->with('matches', $matches);
     }

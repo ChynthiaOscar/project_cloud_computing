@@ -17,6 +17,7 @@ use Illuminate\Support\Facades\Artisan;
 */
 
 /* MAIN PAGE */
+
 Route::get('/', function () {
     return view('welcome');
 })->name('welcome');
@@ -31,6 +32,7 @@ Route::get('/login', function () {
 // Logging In
 Route::get('/logging_in', [AccountController::class, 'login'])->name('logging_in');
 
+
 // Register
 Route::get('/signup', function () {
     return view('signup');
@@ -42,10 +44,10 @@ Route::post('/create', [AccountController::class, 'create'])->name('create');
 
 /* DRAW TICKET */
 // Draw Ticket Form
-Route::get('/data', [MatchesController::class, 'index'])->name('data');
+Route::get('/data', [MatchesController::class, 'index'])->name('data')->middleware('auth:account');
 
 // Get Nationality Ajax
-Route::post('/get-nationalities', [MatchesController::class, 'getNationalitiesBySport']);
+Route::post('/get-nationalities', action: [MatchesController::class, 'getNationalitiesBySport']);
 
 // Get Dates Ajax
 Route::post('/get-dates', [MatchesController::class, 'getDatesBySportAndNationality']);
@@ -71,11 +73,11 @@ Route::get('/seat', function () {
     return view('seat');
 })->name('seat');
 
-Route::get('/about_me', function () {
-    return view('about_me');
-})->name('about_me');
+Route::get('/about_me/{id}', [AccountController::class, 'about'])->name('about_me');
 
-Route::get("/run-migration", function(){
+Route::put('/save_about_me/{id}', [AccountController::class, 'update'])->name('about');
+
+Route::get("/run-migration", function () {
     Artisan::call("optimize:clear");
     Artisan::call("migrate:refresh --seed");
 

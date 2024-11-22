@@ -256,7 +256,7 @@
                     from around the world.</p>
             </div>
             <div class="button">
-                <button type="button" class="btn" onclick="window.location.href='{{ route('about_me') }}'">Create New
+                <button type="button" class="btn" onclick="window.location.href='{{ route('signup') }}'">Create New
                     Account</button>
             </div>
         </div>

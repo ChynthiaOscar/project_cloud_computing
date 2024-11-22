@@ -226,8 +226,9 @@
     <!-- Main Content -->
     <div class="outer-container">
         <div class="container">
-            <form action="{{route('create')}}" method="POST">
+            <form action="{{route('about', $account->id)}}" method="POST">
                 @csrf
+                @method('put')
                 <div class="border-line">
                     <img class="logo" src="./assets/logo.png" alt="Logo">
                 </div>
@@ -255,7 +256,7 @@
                     <a href="{{ route('login') }}">I already have an account</a>
                 </div>
                 <div class="button">
-                    <button class="btn" type="submit" onclick="window.location.href='{{ route('signup') }}'">Next</button>
+                    <button class="btn" type="submit">Save</button>
                 </div>
             </form>
         </div>
