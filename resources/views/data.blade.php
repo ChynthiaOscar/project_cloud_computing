@@ -197,7 +197,7 @@
     </nav>
 
     <div class="outer-container">
-        <div class="container">
+        <form class="container">
             <div class="border-line">
                 <img class="logo" src="./assets/logo.png" alt="Logo">
             </div>
@@ -232,7 +232,7 @@
                 <button type="button" class="btn" onclick="location.href='{{ route('information') }}'">Join
                     Now</button>
             </div>
-        </div>
+        </form>
     </div>
 </body>
 
