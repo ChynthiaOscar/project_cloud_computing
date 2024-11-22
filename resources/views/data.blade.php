@@ -206,7 +206,7 @@
                 <select id="sport" name="sport" required>
                     <option value="">Select a sport</option>
                     @foreach ($matches->pluck('sports')->unique() as $match)
-                        <option value="{{ $match }}">{{ $match }}</option>
+                    <option value="{{ $match }}">{{ $match }}</option>
                     @endforeach
                 </select>
             </div>
@@ -275,7 +275,12 @@
                     $('#date').html('<option value="">Select date</option>');
                     console.log(data);
                     data.forEach(function(item) {
-                        $('#date').append('<option value="' + item + '">' + item +
+                        const date = new Date(item);
+                        $('#date').append('<option value="' + item + '">' + `${new Date(item).toLocaleDateString('en-GB', {
+    day: 'numeric',
+    month: 'long',
+    year: 'numeric'
+})} - ${new Date(item).toLocaleTimeString('en-GB', { hour: '2-digit', minute: '2-digit' }).replace(":", ".")}` +
                             '</option>');
                     });
                 }
