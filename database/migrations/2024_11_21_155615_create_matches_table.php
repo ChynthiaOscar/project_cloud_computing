@@ -13,6 +13,9 @@ return new class extends Migration
     {
         Schema::create('matches', function (Blueprint $table) {
             $table->id();
+            $table->string('sports');
+            $table->string('nationalities');
+            $table->dateTime('date');
             $table->timestamps();
         });
     }

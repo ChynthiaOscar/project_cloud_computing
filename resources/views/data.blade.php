@@ -5,7 +5,9 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Join Draw</title>
-    <link href="https://fonts.googleapis.com/css2?family=Oswald:wght@400;700&family=Open+Sans:wght@300;400;600&display=swap" rel="stylesheet">
+    <link
+        href="https://fonts.googleapis.com/css2?family=Oswald:wght@400;700&family=Open+Sans:wght@300;400;600&display=swap"
+        rel="stylesheet">
     <style>
         /* General Styles */
         body {
@@ -178,7 +180,7 @@
 
 <body>
     <nav>
-        <a href="{{route('welcome')}}" class="logo-container">
+        <a href="{{ route('welcome') }}" class="logo-container">
             <img src="./assets/logo.png" alt="Logo">
         </a>
         <div class="event-info">
@@ -195,7 +197,7 @@
     </nav>
 
     <div class="outer-container">
-        <div class="container">
+        <form class="container">
             <div class="border-line">
                 <img class="logo" src="./assets/logo.png" alt="Logo">
             </div>
@@ -203,34 +205,88 @@
                 <label for="sport">Sport</label>
                 <select id="sport" name="sport" required>
                     <option value="">Select a sport</option>
-                    <option value="skiing">Skiing</option>
-                    <option value="snowboarding">Snowboarding</option>
-                    <option value="ice-hockey">Ice Hockey</option>
+                    @foreach ($matches->pluck('sports')->unique() as $match)
+                    <option value="{{ $match }}">{{ $match }}</option>
+                    @endforeach
                 </select>
             </div>
             <div class="input-group">
                 <label for="nationality">Nationality</label>
                 <select id="nationality" name="nationality" required>
                     <option value="">Select nationality</option>
-                    <option value="usa">USA</option>
-                    <option value="canada">Canada</option>
-                    <option value="france">France</option>
                 </select>
             </div>
             <div class="input-group">
                 <label for="date">Date</label>
                 <select id="date" name="date" required>
                     <option value="">Select date</option>
-                    <option value="2026-02-06">Feb 6, 2026</option>
-                    <option value="2026-02-07">Feb 7, 2026</option>
-                    <option value="2026-02-08">Feb 8, 2026</option>
                 </select>
             </div>
             <div class="button">
-                <button type="button" class="btn" onclick="location.href='{{route('information')}}'">Join Now</button>
+                <button type="button" class="btn" onclick="location.href='{{ route('information') }}'">Join
+                    Now</button>
             </div>
-        </div>
+        </form>
     </div>
 </body>
+
+<script src="https://code.jquery.com/jquery-3.7.1.min.js"
+    integrity="sha256-/JqT3SQfawRcv/BIHPThkBvs0OEvtFFmqPF/lYI/Cxo=" crossorigin="anonymous"></script>
+
+<script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+
+<script>
+    $(document).ready(function() {
+        $('#sport').change(function() {
+            const sport = $(this).val();
+            $('#nationality').html('<option value="">Loading...</option>');
+
+            $.ajax({
+                url: '/get-nationalities',
+                type: 'POST',
+                data: {
+                    sport: sport,
+                    _token: '{{ csrf_token() }}'
+                },
+                success: function(data) {
+                    $('#nationality').html('<option value="">Select nationality</option>');
+                    data.forEach(function(item) {
+                        $('#nationality').append('<option value="' + item + '">' +
+                            item + '</option>');
+                    });
+                }
+            });
+        });
+
+        $('#nationality').change(function() {
+            const sport = $('#sport').val();
+            const nationality = $(this).val();
+            $('#date').html('<option value="">Loading...</option>');
+
+            $.ajax({
+                url: '/get-dates',
+                type: 'POST',
+                data: {
+                    sport: sport,
+                    nationality: nationality,
+                    _token: '{{ csrf_token() }}'
+                },
+                success: function(data) {
+                    $('#date').html('<option value="">Select date</option>');
+                    console.log(data);
+                    data.forEach(function(item) {
+                        const date = new Date(item);
+                        $('#date').append('<option value="' + item + '">' + `${new Date(item).toLocaleDateString('en-GB', {
+    day: 'numeric',
+    month: 'long',
+    year: 'numeric'
+})} - ${new Date(item).toLocaleTimeString('en-GB', { hour: '2-digit', minute: '2-digit' }).replace(":", ".")}` +
+                            '</option>');
+                    });
+                }
+            });
+        });
+    });
+</script>
 
 </html>

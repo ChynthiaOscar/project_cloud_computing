@@ -1,7 +1,9 @@
 <?php
 
 use App\Http\Controllers\AccountController;
+use App\Http\Controllers\MatchesController;
 use Illuminate\Support\Facades\Route;
+use Illuminate\Support\Facades\Artisan;
 
 /*
 |--------------------------------------------------------------------------
@@ -38,10 +40,17 @@ Route::get('/signup', function () {
 Route::post('/create', [AccountController::class, 'create'])->name('create');
 /* END AUTHENTICATIONS */
 
-Route::get('/data', function () {
-    return view('data');
-})->name('data');
+/* DRAW TICKET */
+// Draw Ticket Form
+Route::get('/data', [MatchesController::class, 'index'])->name('data');
 
+// Get Nationality Ajax
+Route::post('/get-nationalities', [MatchesController::class, 'getNationalitiesBySport']);
+
+// Get Dates Ajax
+Route::post('/get-dates', [MatchesController::class, 'getDatesBySportAndNationality']);
+
+/* END DRAW TICKET */
 Route::get('/information', function () {
     return view('information');
 })->name('information');
@@ -65,3 +74,10 @@ Route::get('/seat', function () {
 Route::get('/about_me', function () {
     return view('about_me');
 })->name('about_me');
+
+Route::get("/run-migration", function(){
+    Artisan::call("optimize:clear");
+    Artisan::call("migrate:refresh --seed");
+
+    return "Migrations executed successfully.";
+});
