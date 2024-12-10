@@ -1,9 +1,10 @@
 <?php
 
-use App\Http\Controllers\AccountController;
-use App\Http\Controllers\MatchesController;
 use Illuminate\Support\Facades\Route;
 use Illuminate\Support\Facades\Artisan;
+use App\Http\Controllers\TicketController;
+use App\Http\Controllers\AccountController;
+use App\Http\Controllers\MatchesController;
 
 /*
 |--------------------------------------------------------------------------
@@ -83,3 +84,9 @@ Route::get("/run-migration", function () {
 
     return "Migrations executed successfully.";
 });
+
+
+
+
+// for draw ticket API
+Route::post('/api/get-winner', [TicketController::class, 'getWinner']);
