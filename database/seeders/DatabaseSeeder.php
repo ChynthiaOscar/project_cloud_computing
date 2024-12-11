@@ -3,6 +3,8 @@
 namespace Database\Seeders;
 
 // use Illuminate\Database\Console\Seeds\WithoutModelEvents;
+
+use App\Models\Card;
 use Illuminate\Database\Seeder;
 use PHPUnit\Framework\Attributes\Ticket;
 
@@ -21,6 +23,8 @@ class DatabaseSeeder extends Seeder
             PackagesSeeder::class,
             TicketsDetailSeeder::class,
             TicketsSeeder::class,
+            ScheduleSeeder::class,
+            CardSeeder::class,
         ]);
     }
 }
