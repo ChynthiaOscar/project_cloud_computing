@@ -4,6 +4,7 @@ namespace Database\Seeders;
 
 // use Illuminate\Database\Console\Seeds\WithoutModelEvents;
 use Illuminate\Database\Seeder;
+use PHPUnit\Framework\Attributes\Ticket;
 
 class DatabaseSeeder extends Seeder
 {
@@ -15,6 +16,11 @@ class DatabaseSeeder extends Seeder
         $this->call([
             MatchesSeeder::class,
             AccountSeeder::class,
+            DrawsSeeder::class,
+            PackagesDetailSeeder::class,
+            PackagesSeeder::class,
+            TicketsDetailSeeder::class,
+            TicketsSeeder::class,
         ]);
     }
 }

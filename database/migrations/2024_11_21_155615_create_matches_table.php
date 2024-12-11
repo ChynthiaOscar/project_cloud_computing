@@ -14,11 +14,13 @@ return new class extends Migration
         Schema::create('matches', function (Blueprint $table) {
             $table->id();
             $table->string('sports');
-            $table->string('home');
+            $table->string('home')->nullable();
             $table->string('away')->nullable();
-            $table->dateTime('date');
+            $table->dateTime('start_time');
+            $table->dateTime('end_time');
             $table->string('type');
-            $table->string('status');
+            $table->string('stages');
+            $table->boolean('status')->default(1);
             $table->timestamps();
         });
     }
