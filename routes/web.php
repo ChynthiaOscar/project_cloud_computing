@@ -74,17 +74,10 @@ Route::get('/seat', function () {
     return view('seat');
 })->name('seat');
 
-<<<<<<< Updated upstream
 Route::get('/about_me/{id}', [AccountController::class, 'about'])->name('about_me');
-=======
 Route::get('/match', function () {
     return view('match');
 })->name('match');
-
-Route::get('/about_me', function () {
-    return view('about_me');
-})->name('about_me');
->>>>>>> Stashed changes
 
 Route::put('/save_about_me/{id}', [AccountController::class, 'update'])->name('about');
 
