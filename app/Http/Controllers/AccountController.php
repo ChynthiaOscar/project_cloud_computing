@@ -18,11 +18,6 @@ class AccountController extends Controller
             'email' => 'required|email|unique:accounts',
             'password' => 'required|string'
         ]);
-
-        // if ($formfield->fails()) {
-        //     return response()->json($formfield->errors(), 400);
-        // }
-
         $data['password'] = bcrypt($data['password']);
 
         $account = Account::create($data);
@@ -31,8 +26,6 @@ class AccountController extends Controller
 
     public function login(Request $request)
     {
-        $data = $request->all();
-
         $formfield = $request->validate([
             'email' => 'required|email',
             'password' => 'required'
@@ -41,10 +34,6 @@ class AccountController extends Controller
         if (!$formfield) {
             return response()->json('error 400');
         }
-
-        // $account = Account::where('email', $data['email'])->first();
-        // if (!$account || $data['email'] != $account->email || !password_verify($data['password'], $account->password)) {
-        // }
 
         if (Auth::guard('account')->attempt($formfield)) {
             $request->session()->regenerate();
@@ -76,7 +65,7 @@ class AccountController extends Controller
 
         $account = Account::find($id);
 
-        $update = $account->update([
+        $account->update([
             'first_name' => $data['first_name'],
             'surname' => $data['surname'],
             'date_of_birth' => $data['date_of_birth'],
