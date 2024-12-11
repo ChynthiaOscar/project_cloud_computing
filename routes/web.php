@@ -89,4 +89,4 @@ Route::get("/run-migration", function () {
 
 
 // for draw ticket API
-Route::post('/api/get-winner', [TicketController::class, 'getWinner']);
+Route::post('/api/save-winner', [TicketController::class, 'storeWinner']);
