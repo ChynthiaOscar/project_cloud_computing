@@ -106,12 +106,16 @@
         }
 
         .container {
-            justify-content: center;
+            display: flex;
+            align-items: center;
+            gap: 20px;
             width: 100%;
             border: 5px solid #EE334E;
             padding: 20px;
             background-color: #ffffff;
+            flex-direction: column;
         }
+
 
         .border-line h2 {
             font-size: 30px;
@@ -122,8 +126,8 @@
 
         .border-line img.logo {
             display: block;
-            margin: 0 auto 40px;
-            width: 15%;
+            margin: 0 auto 20px;
+            width: 50%;
         }
 
         .input-group {
@@ -146,6 +150,61 @@
             border-radius: 3px;
         }
 
+        .top-panel {
+            flex: 3;
+            width: 70%;
+        }
+
+        .bottom-panel {
+            flex: 2;
+            padding: 20px;
+            width: 50%;
+            justify-content: center;
+            align-items: center;
+            text-align: center;
+        }
+
+        .description {
+            margin-bottom: 20px;
+        }
+
+        .description h2 {
+            font-size: 20px;
+            margin-bottom: 10px;
+            color: #000000;
+        }
+
+        .description p {
+            font-size: 16px;
+            color: #333333;
+        }
+
+        .cards {
+            display: flex;
+            gap: 20px;
+            justify-content: space-between;
+        }
+
+        .card {
+            flex: 1;
+            background-color: #F9F9F9;
+            border: 1px solid #ddd;
+            border-radius: 10px;
+            padding: 5px;
+            text-align: center;
+        }
+
+        .card h3 {
+            font-size: 18px;
+            margin-bottom: 10px;
+            color: #000000;
+        }
+
+        .card p {
+            font-size: 16px;
+            color: #666666;
+        }
+
         .btn:hover {
             background-color: #005f8e;
             box-shadow: 0px 4px 6px rgba(0, 0, 0, 0.5);
@@ -154,7 +213,7 @@
 
         .btn {
             display: inline-block;
-            padding: 10px 20px;
+            padding: 10px 40px;
             font-size: 16px;
             text-align: center;
             font-weight: 500;
@@ -164,7 +223,7 @@
             transition: background-color 0.3s ease;
             margin-top: 20px;
             margin-bottom: 50px;
-            width: 20%;
+            width: 100%;
             background-color: #0081C8;
             cursor: pointer;
         }
@@ -173,7 +232,7 @@
             display: flex;
             justify-content: center;
             align-items: center;
-            margin-bottom: 20px;
+            margin-top: auto;
         }
     </style>
 </head>
@@ -185,12 +244,13 @@
         </a>
         <div class="event-info">
             <div>Olympic Winter Games</div>
-            <div>6 - 22 FEBRUARY 2026</div>
+            <div>6 - 25 FEBRUARY 2026</div>
             <div>-</div>
             <div>Paralympic Winter Games</div>
             <div>6 - 15 MARCH 2026</div>
         </div>
         <div class="nav-links">
+            <a href="{{ route ('match')}}">Match</a>
             <a href="{{ route('my_ticket') }}">My Tickets</a>
             <a href="{{ route('login') }}" class="login-btn">Login</a>
         </div>
@@ -201,31 +261,55 @@
             <div class="border-line">
                 <img class="logo" src="./assets/logo.png" alt="Logo">
             </div>
-            <div class="input-group">
-                <label for="sport">Sport</label>
-                <select id="sport" name="sport" required>
-                    <option value="">Select a sport</option>
-                    @foreach ($matches->pluck('sports')->unique() as $match)
-                    <option value="{{ $match }}">{{ $match }}</option>
-                    @endforeach
-                </select>
+            <div class="top-panel">
+                <div class="input-group">
+                    <label for="sport">Sport</label>
+                    <select id="sport" name="sport" required>
+                        <option value="">Select a sport</option>
+                        @foreach ($matches->pluck('sports')->unique() as $match)
+                        <option value="{{ $match }}">{{ $match }}</option>
+                        @endforeach
+                    </select>
+                </div>
+                <div class="input-group">
+                    <label for="nationality">Nationality</label>
+                    <select id="nationality" name="nationality" required>
+                        <option value="">Select nationality</option>
+                    </select>
+                </div>
+                <div class="input-group">
+                    <label for="date">Tipe</label>
+                    <select id="date" name="date" required>
+                        <option value="">Select tipe</option>
+                    </select>
+                </div>
             </div>
-            <div class="input-group">
-                <label for="nationality">Nationality</label>
-                <select id="nationality" name="nationality" required>
-                    <option value="">Select nationality</option>
-                </select>
-            </div>
-            <div class="input-group">
-                <label for="date">Date</label>
-                <select id="date" name="date" required>
-                    <option value="">Select date</option>
-                </select>
+
+            <div class="bottom-panel">
+                <div class="description">
+                    <h2>Package Information</h2>
+                    <p>Here is the pricing information for the packages available for specific sports. <br>Please review the details and feel free to purchase tickets for the sport you love most!</p>
+                </div>
+                <div class="cards">
+                    <div class="card">
+                        <h3>Package A</h3>
+                        <p>Price: $50</p>
+                    </div>
+                    <div class="card">
+                        <h3>Package B</h3>
+                        <p>Price: $100</p>
+                    </div>
+                    <div class="card">
+                        <h3>Package C</h3>
+                        <p>Price: $150</p>
+                    </div>
+                </div>
             </div>
             <div class="button">
                 <button type="button" class="btn" onclick="location.href='{{ route('information') }}'">Join
                     Now</button>
             </div>
+        </div>
         </form>
     </div>
 </body>
