@@ -85,8 +85,11 @@ Route::get("/run-migration", function () {
     return "Migrations executed successfully.";
 });
 
-
+Route::get('/show_winners', function () {
+    return view('show_winners');
+});
 
 
 // for draw ticket API
 Route::post('/api/save-winner', [TicketController::class, 'storeWinner']);
+

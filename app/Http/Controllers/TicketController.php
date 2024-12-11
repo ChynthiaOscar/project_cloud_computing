@@ -17,9 +17,10 @@ class TicketController extends Controller
 
     public function storeWinner(Request $request)
     {
+        // dd($request->all());
         $validated = $request->validate([
-            'winner_id' => 'required|integer',
-            'match_id' => 'required|integer',
+            'winner_id' => 'required',
+            'match_id' => 'required',
         ]);
 
         // Insert data into the database
