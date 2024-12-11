@@ -2,9 +2,9 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Draws;
 use Illuminate\Http\Request;
 use App\Services\LambdaService;
-use App\Models\TicketWinner;
 
 class TicketController extends Controller
 {
@@ -24,7 +24,7 @@ class TicketController extends Controller
         ]);
 
         // Insert data into the database
-        TicketWinner::create([
+        Draws::create([
             'account_id' => $validated['winner_id'],
             'match_id' => $validated['match_id'],
         ]);

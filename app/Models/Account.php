@@ -22,7 +22,7 @@ class Account extends Authenticatable
         'remember_token',
     ];
 
-    public function ticketWinners(): HasMany {
-        return $this->hasMany(TicketWinner::class);
+    public function draws(): HasMany {
+        return $this->hasMany(Draws::class);
     }
 }

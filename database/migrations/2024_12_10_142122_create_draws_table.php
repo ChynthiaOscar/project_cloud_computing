@@ -11,12 +11,13 @@ return new class extends Migration
      */
     public function up(): void
     {
-        Schema::create('ticket_winners', function (Blueprint $table) {
+        Schema::create('draws', function (Blueprint $table) {
             $table->id();
             $table->bigInteger('account_id')->unsigned();
             $table->foreign('account_id')->references('id')->on('accounts')->onDelete('cascade');
-            $table->bigInteger('match_id')->unsigned();
-            $table->foreign('match_id')->references('id')->on('matches')->onDelete('cascade');
+            $table->bigInteger('package_id')->unsigned();
+            $table->foreign('package_id')->references('id')->on('packages')->onDelete('cascade');
+            $table->string('status');
             $table->timestamps();
         });
     }

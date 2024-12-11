@@ -11,14 +11,10 @@ return new class extends Migration
      */
     public function up(): void
     {
-        Schema::create('matches', function (Blueprint $table) {
+        Schema::create('packages', function (Blueprint $table) {
             $table->id();
-            $table->string('sports');
-            $table->string('home');
-            $table->string('away')->nullable();
-            $table->dateTime('date');
-            $table->string('type');
-            $table->string('status');
+            $table->string('nationality');
+            $table->boolean('status')->default(1);
             $table->timestamps();
         });
     }
@@ -28,6 +24,6 @@ return new class extends Migration
      */
     public function down(): void
     {
-        Schema::dropIfExists('matches');
+        Schema::dropIfExists('packages');
     }
 };

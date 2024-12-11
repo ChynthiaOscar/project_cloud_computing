@@ -10,9 +10,9 @@ use Illuminate\Database\Eloquent\Relations\HasMany;
 class Matches extends Model
 {
     use HasFactory;
-    protected $fillable = ['sports', 'nationalities', 'date'];
+    protected $fillable = ['sports', 'home', 'away', 'date', 'type', 'status'];
 
-    public function ticketWinners(): HasMany {
-        return $this->hasMany(TicketWinner::class);
+    public function package_details(): HasMany {
+        return $this->hasMany(Packages_Detail::class);
     }
 }

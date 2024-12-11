@@ -3,17 +3,17 @@
 namespace App\Models;
 
 use Illuminate\Database\Eloquent\Model;
-use Illuminate\Database\Eloquent\Relations\HasMany;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Relations\BelongsTo;
 
-class TicketWinner extends Model
+class Draws extends Model
 {
     use HasFactory;
 
     protected $fillable = [
         'account_id',  // Replace with the correct field name
-        'match_id',    // Add other fields if needed
+        'package_id',    // Add other fields if needed
+        'status'
     ];
 
     public function account(): BelongsTo
@@ -21,8 +21,8 @@ class TicketWinner extends Model
         return $this->belongsTo(Account::class);
     }
 
-    public function match(): BelongsTo
+    public function packages(): BelongsTo
     {
-        return $this->belongsTo(Matches::class);
+        return $this->belongsTo(Packages::class);
     }
 }
