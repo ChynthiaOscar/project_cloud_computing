@@ -266,17 +266,18 @@
 <body>
     <!-- Navbar -->
     <nav>
-        <a href="{{route('welcome')}}" class="logo-container">
+        <a href="{{ route('welcome') }}" class="logo-container">
             <img src="./assets/logo.png" alt="Logo">
         </a>
         <div class="event-info">
             <div>Olympic Winter Games</div>
-            <div>6 - 22 FEBRUARY 2026</div>
+            <div>6 - 25 FEBRUARY 2026</div>
             <div>-</div>
             <div>Paralympic Winter Games</div>
             <div>6 - 15 MARCH 2026</div>
         </div>
         <div class="nav-links">
+            <a href="{{ route ('match')}}">Match</a>
             <a href="{{ route('my_ticket') }}">My Tickets</a>
             <a href="{{ route('login') }}" class="login-btn">Login</a>
         </div>

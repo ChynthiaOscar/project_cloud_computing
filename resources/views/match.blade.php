@@ -4,7 +4,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>User Login</title>
+    <title>Join Draw</title>
     <link
         href="https://fonts.googleapis.com/css2?family=Oswald:wght@400;700&family=Open+Sans:wght@300;400;600&display=swap"
         rel="stylesheet">
@@ -12,8 +12,8 @@
         /* General Styles */
         body {
             margin: 0;
-            padding-top: 80px;
-            background-color: #0081C8;
+            padding: 0;
+            background-color: #FCB131;
             display: flex;
             justify-content: center;
             align-items: center;
@@ -34,7 +34,6 @@
             box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
         }
 
-        /* Logo Section */
         .logo-container {
             display: flex;
             align-items: center;
@@ -99,73 +98,45 @@
             display: flex;
             justify-content: center;
             width: 90%;
-            height: auto;
-            border: 8px solid #FCB131;
-            padding: 20px;
-            background-color: #00A651;
+            height: 80%;
+            margin-top: 80px;
         }
 
         .container {
-            justify-content: center;
+            display: flex;
+            flex-direction: column;
+            justify-content: flex-start;
             width: 100%;
-            border: 5px solid #EE334E;
-            padding: 20px;
-            background-color: #ffffff;
-        }
-
-        .border-line h2 {
-            font-size: 30px;
-            margin-bottom: 40px;
-            color: #000000;
+            height: 520px;
             text-align: center;
         }
 
-        .border-line img.logo {
-            display: block;
-            margin: 0 auto 20px;
-            width: 15%;
-        }
-
         .input-group {
-            margin-bottom: 15px;
+            gap: 10px;
+            width: 100%;
         }
 
         .input-group label {
-            display: block;
-            margin-bottom: 5px;
-            margin-left: 350px;
+            font-size: 16px;
+            font-weight: bold;
             color: #000000;
+            width: 30%;
         }
 
-        .input-group input {
-            width: 50%;
+        .input-group select {
+            flex: 1;
+            margin-left: 50px;
+            width: 60%;
             padding: 8px;
             border: 1px solid #ccc;
             border-radius: 3px;
-            margin-left: 25%;
         }
 
-        .input-group input:focus {
-            outline: none;
-            border-color: #007bff;
-        }
-
-        .forgot-password {
-            color: #000000;
-            cursor: pointer;
+        .input-group-container {
             display: flex;
-            justify-content: center;
-            margin-bottom: 10px;
-            margin-top: 20px;
-        }
-
-        .forgot-password a {
-            text-decoration: none;
-            transition: text-decoration 0.3s ease;
-        }
-
-        .forgot-password a:hover {
-            text-decoration: underline;
+            gap: 20px;
+            width: 100%;
+            justify-content: space-between;
         }
 
         .btn:hover {
@@ -174,39 +145,84 @@
             transition: box-shadow 0.3s ease, background-color 0.3s ease;
         }
 
-        /* Buttons */
         .btn {
             display: inline-block;
-            padding: 10px 20px;
+            padding: 10px 40px;
             font-size: 16px;
             text-align: center;
             font-weight: 500;
-            border: 2px solid #000000;
             border-radius: 25px;
             color: #FFFFFF;
+            border: none;
             transition: background-color 0.3s ease;
-            width: 20%;
+            margin-top: 20px;
+            margin-bottom: 50px;
+            width: 100%;
             background-color: #0081C8;
             cursor: pointer;
         }
 
-        .button {
+        .card.main-card {
             display: flex;
-            justify-content: center;
-            align-items: center;
+            flex-direction: column; 
+            justify-content: flex-start;
+            align-items: stretch;
+            padding: 16px;
+            margin-top: 30px;
             margin-bottom: 20px;
+            border-radius: 8px;
+            box-shadow: 0px 4px 6px rgba(0, 0, 0, 0.1);
+            background-color: #0081C8;
+            width: 100%;
         }
 
-        .border-line p {
-            text-align: center;
-            color: #000000;
+        .main-card .title {
+            font-size: 1.9rem;
+            font-weight: 800;
+            color: #FFFFFF;
+        }
+
+        .main-card .subtitle {
+            font-size: 1rem;
+            font-weight: 600;
+            color: #333;
+        }
+
+        .sub-card {
+            flex: 1; 
             margin-bottom: 10px;
+            padding: 16px;
+            border: 2px solid #ccc;
+            border-radius: 8px;
+            box-shadow: 0px 4px 6px rgba(0, 0, 0, 0.1);
+            background-color: #f9f9f9;
+        }
+
+        .sub-card-container {
+            display: flex;
+            flex-direction: column; 
+            justify-content: space-between;
+            height: 100%;
+            margin-top: 20px;
+        }
+
+        .sub-card .time {
+            font-size: 1.2rem;
+            font-weight: bold;
+            color: #EE334E;
+            margin-bottom: 10px;
+        }
+
+        .sub-card .teams {
+            font-size: 1rem;
+            font-weight: 800;
+            font-size: 22px;
+            color: #000000;
         }
     </style>
 </head>
 
 <body>
-    <!-- Navbar -->
     <nav>
         <a href="{{ route('welcome') }}" class="logo-container">
             <img src="./assets/logo.png" alt="Logo">
@@ -225,39 +241,39 @@
         </div>
     </nav>
 
-    <!-- Main Content -->
     <div class="outer-container">
-        <div class="container">
-            <form action="{{route('create')}}" method="POST">
-                @csrf
-                <div class="border-line">
-                    <img class="logo" src="./assets/logo.png" alt="Logo">
+        <form class="container">
+            <div class="input-group-container">
+                <div class="input-group">
+                    <label for="sport">Sport</label>
+                    <select id="sport" name="sport" required>
+                        <option value="">Select a sport</option>
+                    </select>
                 </div>
                 <div class="input-group">
-                    <label for="name">Username</label>
-                    <input type="text" id="name" name="name" required>
+                    <label for="date">Tipe</label>
+                    <select id="date" name="date" required>
+                        <option value="">Select tipe</option>
+                    </select>
                 </div>
-                <div class="input-group">
-                    <label for="email">Email Address</label>
-                    <input type="email" id="email" name="email" required>
+            </div>
+
+            <div class="card main-card">
+                <div class="title">ICE HOCKEY</div>
+                <div class="subtitle">7 February 2026</div>
+                <div class="sub-card-container">
+                    <div class="card sub-card">
+                        <div class="time">10:00 AM</div>
+                        <div class="teams">Team A vs Team B</div>
+                    </div>
+                    <div class="card sub-card">
+                        <div class="time">12:00 PM</div>
+                        <div class="teams">Team C vs Team D</div>
+                    </div>
                 </div>
-                <div class="input-group">
-                    <label for="password">Password</label>
-                    <input type="password" id="password" name="password" required>
-                </div>
-                <div class="input-group">
-                    <label for="password">Re-enter Password</label>
-                    <input type="password" id="password" name="password" required>
-                </div>
-                <div class="forgot-password">
-                    <a href="{{ route('login') }}">I already have an account</a>
-                </div>
-                <div class="button">
-                    <button class="btn" type="submit">Create
-                        My Account</button>
-                </div>
-            </form>
-        </div>
+            </div>
+            
+        </form>
     </div>
 </body>
 
