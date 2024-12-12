@@ -25,4 +25,9 @@ class Draws extends Model
     {
         return $this->belongsTo(Packages::class, 'package_id');
     }
+
+    public function tickets(): BelongsTo
+    {
+        return $this->belongsTo(Tickets::class, 'ticket_id', 'id');
+    }
 }

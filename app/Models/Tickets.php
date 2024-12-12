@@ -14,4 +14,8 @@ class Tickets extends Model
     public function ticket_details(): HasMany {
         return $this->hasMany(Tickets_Detail::class);
     }
+
+    public function draws(): HasMany {
+        return $this->hasMany(Draws::class, 'ticket_id', 'id');
+    }
 }
