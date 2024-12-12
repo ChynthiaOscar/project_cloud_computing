@@ -13,7 +13,9 @@ return new class extends Migration
     {
         Schema::create('packages', function (Blueprint $table) {
             $table->id();
+            $table->string('sports');
             $table->string('nationality');
+            $table->string('type');
             $table->boolean('status')->default(1);
             $table->timestamps();
         });

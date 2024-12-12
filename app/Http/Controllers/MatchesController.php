@@ -22,19 +22,31 @@ class MatchesController extends Controller
     public function getNationalitiesBySport(Request $request)
     {
         $sport = $request->input('sport');
-        $data = Matches::get()->where('sports', $sport)->pluck('nationalities');
+        $matches = Matches::get()->where('sports', $sport);
+        $nationalities = $matches->flatMap(function ($match) {
+            return [
+                $match->home,
+                $match->away
+            ];
+        })->unique()->whereNotNull()->values();
 
-        return response()->json(isset($data) ? $data : []);
+        return response()->json(isset($nationalities) ? $nationalities : []);
     }
 
     // getDatesBySportAndNationality
-    public function getDatesBySportAndNationality(Request $request)
+    public function getTypeBySportAndNationality(Request $request)
     {
         $sport = $request->input('sport');
         $nationality = $request->input('nationality');
-        $data = Matches::get()->where('sports', $sport)->where('nationalities', $nationality)->pluck('date');
 
-        return response()->json(isset($data) ? $data : []);
+        $data1 = Matches::get()->where('sports', $sport)->where('home', $nationality);
+        $data2 = Matches::get()->where('sports', $sport)->where('away', $nationality);
+
+        $type = $data1->merge($data2)->map(function ($match) {
+            return $match->type;
+        })->unique()->values();
+
+        return response()->json(isset($type) ? $type : []);
     }
 
 }

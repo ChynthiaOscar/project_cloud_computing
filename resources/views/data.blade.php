@@ -250,7 +250,7 @@
             <div>6 - 15 MARCH 2026</div>
         </div>
         <div class="nav-links">
-            <a href="{{ route ('match')}}">Match</a>
+            <a href="{{ route('match') }}">Match</a>
             <a href="{{ route('my_ticket') }}">My Tickets</a>
             <a href="{{ route('login') }}" class="login-btn">Login</a>
         </div>
@@ -267,7 +267,7 @@
                     <select id="sport" name="sport" required>
                         <option value="">Select a sport</option>
                         @foreach ($matches->pluck('sports')->unique() as $match)
-                        <option value="{{ $match }}">{{ $match }}</option>
+                            <option value="{{ $match }}">{{ $match }}</option>
                         @endforeach
                     </select>
                 </div>
@@ -278,9 +278,9 @@
                     </select>
                 </div>
                 <div class="input-group">
-                    <label for="date">Tipe</label>
-                    <select id="date" name="date" required>
-                        <option value="">Select tipe</option>
+                    <label for="type">Type</label>
+                    <select id="type" name="type" required>
+                        <option value="">Select type</option>
                     </select>
                 </div>
             </div>
@@ -288,19 +288,20 @@
             <div class="bottom-panel">
                 <div class="description">
                     <h2>Package Information</h2>
-                    <p>Here is the pricing information for the packages available for specific sports. <br>Please review the details and feel free to purchase tickets for the sport you love most!</p>
+                    <p>Here is the pricing information for the packages available for specific sports. <br>Please review
+                        the details and feel free to purchase tickets for the sport you love most!</p>
                 </div>
                 <div class="cards">
                     <div class="card">
-                        <h3>Package A</h3>
+                        <h3>Standard</h3>
                         <p>Price: $50</p>
                     </div>
                     <div class="card">
-                        <h3>Package B</h3>
+                        <h3>Premium</h3>
                         <p>Price: $100</p>
                     </div>
                     <div class="card">
-                        <h3>Package C</h3>
+                        <h3>VIP</h3>
                         <p>Price: $150</p>
                     </div>
                 </div>
@@ -309,8 +310,8 @@
                 <button type="button" class="btn" onclick="location.href='{{ route('information') }}'">Join
                     Now</button>
             </div>
-        </div>
-        </form>
+    </div>
+    </form>
     </div>
 </body>
 
@@ -345,10 +346,10 @@
         $('#nationality').change(function() {
             const sport = $('#sport').val();
             const nationality = $(this).val();
-            $('#date').html('<option value="">Loading...</option>');
+            $('#type').html('<option value="">Loading...</option>');
 
             $.ajax({
-                url: '/get-dates',
+                url: '/get-types',
                 type: 'POST',
                 data: {
                     sport: sport,
@@ -356,16 +357,11 @@
                     _token: '{{ csrf_token() }}'
                 },
                 success: function(data) {
-                    $('#date').html('<option value="">Select date</option>');
+                    $('#type').html('<option value="">Select type</option>');
                     console.log(data);
                     data.forEach(function(item) {
-                        const date = new Date(item);
-                        $('#date').append('<option value="' + item + '">' + `${new Date(item).toLocaleDateString('en-GB', {
-    day: 'numeric',
-    month: 'long',
-    year: 'numeric'
-})} - ${new Date(item).toLocaleTimeString('en-GB', { hour: '2-digit', minute: '2-digit' }).replace(":", ".")}` +
-                            '</option>');
+                        $('#type').append('<option value="' + item + '">' +
+                            item + '</option>');
                     });
                 }
             });

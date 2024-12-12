@@ -18,6 +18,7 @@ return new class extends Migration
             $table->unsignedBigInteger('package_id');
             $table->foreign('package_id')->references('id')->on('packages')->onDelete('cascade');
             $table->integer('quota');
+            $table->integer('price');
             $table->timestamps();
         });
     }

@@ -385,7 +385,7 @@ class MatchesSeeder extends Seeder
 
         // figure skating womens
         DB::table('matches')->insert([
-            'sports' => 'Ice Hockey',
+            'sports' => 'Figure Skating',
             'home' => 'Norway (NOR)',
             'start_time' => '2026-02-14 13:00:00',
             'end_time' => '2026-02-14 18:00:00',
@@ -396,7 +396,7 @@ class MatchesSeeder extends Seeder
         ]);
 
         DB::table('matches')->insert([
-            'sports' => 'Ice Hockey',
+            'sports' => 'Figure Skating',
             'home' => 'Germany (GER)',
             'start_time' => '2026-02-14 13:00:00',
             'end_time' => '2026-02-14 18:00:00',
@@ -407,7 +407,7 @@ class MatchesSeeder extends Seeder
         ]);
 
         DB::table('matches')->insert([
-            'sports' => 'Ice Hockey',
+            'sports' => 'Figure Skating',
             'home' => 'China (CHN)',
             'start_time' => '2026-02-14 13:00:00',
             'end_time' => '2026-02-14 18:00:00',
@@ -418,7 +418,7 @@ class MatchesSeeder extends Seeder
         ]);
 
         DB::table('matches')->insert([
-            'sports' => 'Ice Hockey',
+            'sports' => 'Figure Skating',
             'home' => 'United States of America (USA)',
             'start_time' => '2026-02-14 13:00:00',
             'end_time' => '2026-02-14 18:00:00',
@@ -429,7 +429,7 @@ class MatchesSeeder extends Seeder
         ]);
 
         DB::table('matches')->insert([
-            'sports' => 'Ice Hockey',
+            'sports' => 'Figure Skating',
             'home' => 'France (FRA)',
             'start_time' => '2026-02-14 13:00:00',
             'end_time' => '2026-02-14 18:00:00',
@@ -440,7 +440,7 @@ class MatchesSeeder extends Seeder
         ]);
 
         DB::table('matches')->insert([
-            'sports' => 'Ice Hockey',
+            'sports' => 'Figure Skating',
             'home' => 'Canada (CAN)',
             'start_time' => '2026-02-14 13:00:00',
             'end_time' => '2026-02-14 18:00:00',
@@ -451,7 +451,7 @@ class MatchesSeeder extends Seeder
         ]);
 
         DB::table('matches')->insert([
-            'sports' => 'Ice Hockey',
+            'sports' => 'Figure Skating',
             'home' => 'Japan (JPN)',
             'start_time' => '2026-02-14 13:00:00',
             'end_time' => '2026-02-14 18:00:00',
@@ -462,7 +462,7 @@ class MatchesSeeder extends Seeder
         ]);
 
         DB::table('matches')->insert([
-            'sports' => 'Ice Hockey',
+            'sports' => 'Figure Skating',
             'home' => 'Italy (ITA)',
             'start_time' => '2026-02-14 13:00:00',
             'end_time' => '2026-02-14 18:00:00',
@@ -474,88 +474,88 @@ class MatchesSeeder extends Seeder
 
         // figure skating mens
         DB::table('matches')->insert([
-            'sports' => 'Ice Hockey',
+            'sports' => 'Figure Skating',
             'home' => 'Norway (NOR)',
             'start_time' => '2026-02-23 13:00:00',
             'end_time' => '2026-02-23 18:00:00',
-            'type' => 'Women',
+            'type' => 'Men',
             'stages' => 'Finals',
             'created_at' => now(),
             'updated_at' => now(),
         ]);
 
         DB::table('matches')->insert([
-            'sports' => 'Ice Hockey',
+            'sports' => 'Figure Skating',
             'home' => 'Germany (GER)',
             'start_time' => '2026-02-23 13:00:00',
             'end_time' => '2026-02-23 18:00:00',
-            'type' => 'Women',
+            'type' => 'Men',
             'stages' => 'Finals',
             'created_at' => now(),
             'updated_at' => now(),
         ]);
 
         DB::table('matches')->insert([
-            'sports' => 'Ice Hockey',
+            'sports' => 'Figure Skating',
             'home' => 'China (CHN)',
             'start_time' => '2026-02-23 13:00:00',
             'end_time' => '2026-02-23 18:00:00',
-            'type' => 'Women',
+            'type' => 'Men',
             'stages' => 'Finals',
             'created_at' => now(),
             'updated_at' => now(),
         ]);
 
         DB::table('matches')->insert([
-            'sports' => 'Ice Hockey',
+            'sports' => 'Figure Skating',
             'home' => 'United States of America (USA)',
             'start_time' => '2026-02-23 13:00:00',
             'end_time' => '2026-02-23 18:00:00',
-            'type' => 'Women',
+            'type' => 'Men',
             'stages' => 'Finals',
             'created_at' => now(),
             'updated_at' => now(),
         ]);
 
         DB::table('matches')->insert([
-            'sports' => 'Ice Hockey',
+            'sports' => 'Figure Skating',
             'home' => 'France (FRA)',
             'start_time' => '2026-02-23 13:00:00',
             'end_time' => '2026-02-23 18:00:00',
-            'type' => 'Women',
+            'type' => 'Men',
             'stages' => 'Finals',
             'created_at' => now(),
             'updated_at' => now(),
         ]);
 
         DB::table('matches')->insert([
-            'sports' => 'Ice Hockey',
+            'sports' => 'Figure Skating',
             'home' => 'Canada (CAN)',
             'start_time' => '2026-02-23 13:00:00',
             'end_time' => '2026-02-23 18:00:00',
-            'type' => 'Women',
+            'type' => 'Men',
             'stages' => 'Finals',
             'created_at' => now(),
             'updated_at' => now(),
         ]);
 
         DB::table('matches')->insert([
-            'sports' => 'Ice Hockey',
+            'sports' => 'Figure Skating',
             'home' => 'Japan (JPN)',
             'start_time' => '2026-02-23 13:00:00',
             'end_time' => '2026-02-23 18:00:00',
-            'type' => 'Women',
+            'type' => 'Men',
             'stages' => 'Finals',
             'created_at' => now(),
             'updated_at' => now(),
         ]);
 
         DB::table('matches')->insert([
-            'sports' => 'Ice Hockey',
+            'sports' => 'Figure Skating',
             'home' => 'Italy (ITA)',
             'start_time' => '2026-02-23 13:00:00',
             'end_time' => '2026-02-23 18:00:00',
-            'type' => 'Women',
+            'type' => 'Men',
             'stages' => 'Finals',
             'created_at' => now(),
             'updated_at' => now(),

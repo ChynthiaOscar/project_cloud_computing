@@ -16,7 +16,6 @@ class TicketsSeeder extends Seeder
         // vip
         DB::table('tickets')->insert([
             'type' => 'VIP',
-            'price' => 500000,
             'created_at' => now(),
             'updated_at' => now(),
         ]);
@@ -24,7 +23,6 @@ class TicketsSeeder extends Seeder
         // premium
         DB::table('tickets')->insert([
             'type' => 'Premium',
-            'price' => 300000,
             'created_at' => now(),
             'updated_at' => now(),
         ]);
@@ -32,7 +30,6 @@ class TicketsSeeder extends Seeder
         // standard
         DB::table('tickets')->insert([
             'type' => 'Standard',
-            'price' => 100000,
             'created_at' => now(),
             'updated_at' => now(),
         ]);
