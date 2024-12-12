@@ -70,6 +70,7 @@ class MatchesController extends Controller
     {
         $sport = $request->input('sport');
         $type = $request->input('type');
+        $isTypeNull = true;
 
         $matches = Matches::where('status', 1)
             ->when($sport, fn($query) => $query->where('sports', $sport))
@@ -78,6 +79,10 @@ class MatchesController extends Controller
             ->groupBy('sports')
             ->map(fn($sportGroup) => $sportGroup->groupBy('stages'));
 
-        return view('partials.matches', compact('matches'))->render();
+        if ($type != 'Men' && $type !='Women') {
+            return view('partials.matches', compact('matches', 'isTypeNull'))->render();
+        } else {
+            return view('partials.matches', compact('matches'))->render();
+        }
     }
 }
