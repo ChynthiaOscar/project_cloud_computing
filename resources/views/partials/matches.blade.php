@@ -51,7 +51,7 @@ use Carbon\Carbon;
                     {{ Carbon::parse($data->start_time)->format('j F Y') }} - {{ Carbon::parse($data->start_time)->format('g:i A') }}
                 </div>
                 <div class="teams">{{ $data->home ?: 'n/a' }} vs {{ $data->away ?: 'n/a' }}</div>
-                <div style='color: {{ $data->type == 'Men' ? '#2594f5' : '#db4bc6' }};'>
+                <div style='color:  { $data->type == 'Men' ? '#2594f5' : '#db4bc6' }};'>
                     {{ $data->type }}
                 </div>
             </div>

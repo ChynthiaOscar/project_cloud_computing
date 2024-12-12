@@ -183,10 +183,16 @@
             <div class="border-line">
                 <img class="logo" src="./assets/logo.png" alt="Logo">
             </div>
+            @php
+            use Carbon\Carbon;
+            use App\Models\Schedule;
+            
+            $date_announcement = Schedule::select('date')->where('name', "Last chance to enter the draw")->first();
+            @endphp
             <p class="message">
                 You have successfully registered as part of the Olympic draw tickets for this event. 
                 <br><br>
-                Please return to this website on <br><br><strong>JUNE 25, 2025 at 00:00</strong><br><br> to proceed with purchasing tickets if you are lucky enough to win the draw.
+                Please return to this website on <br><br><strong>{{strtoupper(Carbon::parse($date_announcement['date'])->format('F, j Y'))}} at 00:00</strong><br><br> to proceed with purchasing tickets if you are lucky enough to win the draw.
             </p>
             <br><br>
             <p class="label">Want to participate in another ticket draw?</p>

@@ -2,7 +2,10 @@
 
 namespace App\Http\Controllers;
 
+use Carbon\Carbon;
+use App\Models\Draws;
 use App\Models\Account;
+use App\Models\Schedule;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Validator;
@@ -37,7 +40,17 @@ class AccountController extends Controller
 
         if (Auth::guard('account')->attempt($formfield)) {
             $request->session()->regenerate();
-            return redirect()->route('data');
+            $user = Auth::guard('account')->user();
+            
+            $date_announcement = Schedule::select('date')->where('name', "Last chance to enter the draw")->first();
+
+            if (Draws::where('account_id', $user->id)->where('status', 1)->exists() && $date_announcement['date'] < Carbon::now()->format('Y-m-d')) {
+                return redirect()->route('win');
+            } else if (Draws::where('account_id', $user->id)->exists() && $date_announcement['date'] < Carbon::now()) {
+                return redirect()->route('lose');
+            } else {
+                return redirect()->route('data');
+            }
         }
         return redirect()->route('login')->with('error', 'Invalid email or password');
     }
