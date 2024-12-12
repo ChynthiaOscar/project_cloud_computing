@@ -18,11 +18,11 @@ class DatabaseSeeder extends Seeder
         $this->call([
             MatchesSeeder::class,
             AccountSeeder::class,
-            PackagesSeeder::class,
             DrawsSeeder::class,
+            PackagesSeeder::class,
             PackagesDetailSeeder::class,
-            TicketsDetailSeeder::class,
             TicketsSeeder::class,
+            TicketsDetailSeeder::class,
             ScheduleSeeder::class,
             CardSeeder::class,
         ]);
