@@ -18,9 +18,9 @@ class DatabaseSeeder extends Seeder
         $this->call([
             MatchesSeeder::class,
             AccountSeeder::class,
+            PackagesSeeder::class,
             DrawsSeeder::class,
             PackagesDetailSeeder::class,
-            PackagesSeeder::class,
             TicketsDetailSeeder::class,
             TicketsSeeder::class,
             ScheduleSeeder::class,

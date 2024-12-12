@@ -17,7 +17,7 @@ return new class extends Migration
             $table->foreign('account_id')->references('id')->on('accounts')->onDelete('cascade');
             $table->bigInteger('package_id')->unsigned();
             $table->foreign('package_id')->references('id')->on('packages')->onDelete('cascade');
-            $table->string('status');
+            $table->bigInteger('status');
             $table->timestamps();
         });
     }

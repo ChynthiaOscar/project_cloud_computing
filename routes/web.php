@@ -4,6 +4,7 @@ use Illuminate\Support\Facades\Route;
 use Illuminate\Support\Facades\Artisan;
 use App\Http\Controllers\TicketController;
 use App\Http\Controllers\AccountController;
+use App\Http\Controllers\DrawController;
 use App\Http\Controllers\MatchesController;
 
 /*
@@ -94,5 +95,5 @@ Route::get('/show_winners', function () {
 
 
 // for draw ticket API
-Route::post('/api/save-winner', [TicketController::class, 'storeWinner']);
+Route::post('/api/save-winner', [DrawController::class, 'saveWinners']);
 

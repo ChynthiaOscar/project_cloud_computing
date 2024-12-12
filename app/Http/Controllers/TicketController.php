@@ -14,21 +14,4 @@ class TicketController extends Controller
     {
         $this->lambdaService = $lambdaService;
     }
-
-    public function storeWinner(Request $request)
-    {
-        // dd($request->all());
-        $validated = $request->validate([
-            'winner_id' => 'required',
-            'match_id' => 'required',
-        ]);
-
-        // Insert data into the database
-        Draws::create([
-            'account_id' => $validated['winner_id'],
-            'match_id' => $validated['match_id'],
-        ]);
-
-        return response()->json(['message' => 'Winner saved successfully'], 201);
-    }
 }

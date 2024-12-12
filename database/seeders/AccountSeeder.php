@@ -28,5 +28,49 @@ class AccountSeeder extends Seeder
             "country_of_residence" => 'Indonesia',
             'postcode' => '93232',
         ]);
+
+        DB::table("accounts")->insert([
+            "name" => 'Kevin3',
+            'email'=> 'kevin3@gmail.com',
+            'password'=> bcrypt('12345'),
+            'first_name' => "Kevin",
+            'surname' => "Adi",
+            "date_of_birth" => $mysqlDate,
+            "country_of_residence" => 'Indonesia',
+            'postcode' => '93232',
+        ]);
+
+        DB::table("accounts")->insert([
+            "name" => 'Valiant',
+            'email'=> 'valiant@gmail.com',
+            'password'=> bcrypt('12345'),
+            'first_name' => "Valiant",
+            'surname' => "Adi",
+            "date_of_birth" => $mysqlDate,
+            "country_of_residence" => 'Indonesia',
+            'postcode' => '93232',
+        ]);
+
+        DB::table("accounts")->insert([
+            "name" => 'Chynthia',
+            'email'=> 'chynthia@gmail.com',
+            'password'=> bcrypt('12345'),
+            'first_name' => "Chynthia",
+            'surname' => "Adi",
+            "date_of_birth" => $mysqlDate,
+            "country_of_residence" => 'Indonesia',
+            'postcode' => '93232',
+        ]);
+
+        DB::table("accounts")->insert([
+            "name" => 'Budi',
+            'email'=> 'budi@gmail.com',
+            'password'=> bcrypt('12345'),
+            'first_name' => "Budi",
+            'surname' => "Adi",
+            "date_of_birth" => $mysqlDate,
+            "country_of_residence" => 'Indonesia',
+            'postcode' => '93232',
+        ]);
     }
 }
