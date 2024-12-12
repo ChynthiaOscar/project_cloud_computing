@@ -22,11 +22,13 @@ class DrawsSeeder extends Seeder
             2 => [
                 ['account_id' => 3, 'package_id' => 2],
                 ['account_id' => 2, 'package_id' => 2],
+                ['account_id' => 5, 'package_id' => 2],
             ],
             3 => [
                 ['account_id' => 4, 'package_id' => 3],
                 ['account_id' => 1, 'package_id' => 3],
                 ['account_id' => 5, 'package_id' => 3],
+                ['account_id' => 3, 'package_id' => 3],
             ],
         ];
 
