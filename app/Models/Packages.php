@@ -9,10 +9,10 @@ use Illuminate\Database\Eloquent\Factories\HasFactory;
 class Packages extends Model
 {
     use HasFactory;
-    protected $fillable = ['nationality', 'status'];
+    protected $fillable = ['sports', 'nationality', 'type', 'status'];
 
     public function package_details(): HasMany {
-        return $this->hasMany(Packages_Detail::class);
+        return $this->hasMany(Packages_Detail::class, 'id', 'package_id');
     }
 
     public function draws(): HasMany {

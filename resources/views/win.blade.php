@@ -5,7 +5,9 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>User Login</title>
-    <link href="https://fonts.googleapis.com/css2?family=Oswald:wght@400;700&family=Open+Sans:wght@300;400;600&display=swap" rel="stylesheet">
+    <link
+        href="https://fonts.googleapis.com/css2?family=Oswald:wght@400;700&family=Open+Sans:wght@300;400;600&display=swap"
+        rel="stylesheet">
     <style>
         /* General Styles */
         body {
@@ -215,7 +217,7 @@
     <!-- Navbar -->
     <nav>
         <a href="{{ route('welcome') }}" class="logo-container">
-            <img src="./assets/logo.png" alt="Logo">
+            <img src="/assets/logo.png" alt="Logo">
         </a>
         <div class="event-info">
             <div>Olympic Winter Games</div>
@@ -225,61 +227,74 @@
             <div>6 - 15 MARCH 2026</div>
         </div>
         <div class="nav-links">
-            <a href="{{ route ('match')}}">Match</a>
+            <a href="{{ route('match') }}">Match</a>
             <a href="{{ route('my_ticket') }}">My Tickets</a>
             <a href="{{ route('login') }}" class="login-btn">Login</a>
         </div>
     </nav>
 
+    @php
+        use App\Models\Draws;
+        use App\Models\Packages;
+        use App\Models\Packages_Detail;
+        use Carbon\Carbon;
+
+        $draw = Draws::get()
+            ->where('account_id', Auth::guard('account')->user()->id)
+            ->where('status', 1);
+    @endphp
+
     <!-- Success Message Section -->
     <div class="outer-container">
         <div class="container">
             <div class="border-line">
-                <img class="logo" src="./assets/logo.png" alt="Logo">
+                <img class="logo" src="/assets/logo.png" alt="Logo">
             </div>
             <p class="message">
-                <strong>Congratulations</strong>, you have successfully secured the chance to purchase tickets for the Olympic 2026!<br>
+                <strong>Congratulations</strong>, you have successfully secured the chance to purchase tickets for the
+                Olympic 2026!<br>
                 <br>
                 <span>Please select one of the cards below to proceed with the purchase.</span><br>
             </p>
 
             <!-- Event Cards -->
             <div class="card-container">
-                <!-- Card 1 -->
-                <div class="card" onclick="selectCard(this)">
-                    <h3>Ice Hockey</h3>
-                    <p>Canada</p>
-                    <p>Women's Ice Hockey</p>
-                    <p>12 February 2026, 10:00 AM</p>
-                </div>
-                <!-- Card 2 -->
-                <div class="card" onclick="selectCard(this)">
-                    <h3>Figure Skating</h3>
-                    <p>USA</p>
-                    <p>Men's Singles</p>
-                    <p>14 February 2026, 2:00 PM</p>
-                </div>
-                <!-- Card 3 -->
-                <div class="card" onclick="selectCard(this)">
-                    <h3>Ski Jumping</h3>
-                    <p>Japan</p>
-                    <p>Mixed Team</p>
-                    <p>16 February 2026, 3:30 PM</p>
-                </div>
+                @foreach ($draw as $data)
+                    @php
+                        $p = Packages_Detail::get()->where('package_id', $data->packages->id);
+                    @endphp
+                    <div class="card" onclick="selectCard(this, {{ $data->package_id }})">
+                        <h3>{{ $data->packages->sports }}</h3>
+                        <p>{{ $data->packages->nationality }}</p>
+                        <p>{{ $data->packages->type }}</p>
+                        @foreach ($p as $d)
+                            <p>{{ Carbon::parse($d->matches->start_time)->format('j F Y') }} -
+                                {{ Carbon::parse($d->matches->start_time)->format('H:i') }}</p>
+                        @endforeach
+                    </div>
+                @endforeach
+                <input style="display: none;" id="package_id">
             </div>
 
             <div class="button">
-                <button onclick="window.location.href='{{ route('seat') }}'" class="btn">Proceed to Purchase</button>
+                <button onclick="passData()" class="btn">Proceed to
+                    Purchase</button>
             </div>
         </div>
     </div>
 
     <script>
-        function selectCard(selectedCard) {
+        function selectCard(selectedCard, id) {
             document.querySelectorAll('.card').forEach(card => {
                 card.classList.remove('selected');
             });
+            document.getElementById('package_id').value = id;
             selectedCard.classList.add('selected');
+        }
+
+        function passData() {
+            let package_id = document.getElementById('package_id').value;
+            window.location.href = `/seat/${package_id}`;
         }
     </script>
 </body>

@@ -6,6 +6,8 @@ use App\Http\Controllers\TicketController;
 use App\Http\Controllers\AccountController;
 use App\Http\Controllers\DrawController;
 use App\Http\Controllers\MatchesController;
+use App\Http\Controllers\PackagesController;
+use App\Http\Controllers\TicketsDetailController;
 
 /*
 |--------------------------------------------------------------------------
@@ -57,7 +59,16 @@ Route::post('/get-types', [MatchesController::class, 'getTypeBySportAndNationali
 // Get Ticket Price
 Route::post('/get-price', [MatchesController::class, 'getTicketPrice']);
 
+// Save Ticket
+Route::post('/save-ticket', [TicketsDetailController::class, 'saveTickets'])->name('saveTickets');
+
 /* END DRAW TICKET */
+
+/* PAYMENT */
+// Payment Form
+Route::put('/payment/{id}', [PackagesController::class, 'payment'])->name('payment')->middleware('auth:account');
+/* END PAYMENT */
+
 Route::get('/information', function () {
     return view('information');
 })->name('information');
@@ -74,9 +85,7 @@ Route::get('/lose', function () {
     return view('lose');
 })->name('lose');
 
-Route::get('/seat', function () {
-    return view('seat');
-})->name('seat');
+Route::get('/seat/{id}', [PackagesController::class, 'index'])->name('seat');
 
 Route::get('/about_me/{id}', [AccountController::class, 'about'])->name('about_me');
 Route::get('/match', function () {

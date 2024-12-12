@@ -1,10 +1,13 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>User Login</title>
-    <link href="https://fonts.googleapis.com/css2?family=Oswald:wght@400;700&family=Open+Sans:wght@300;400;600&display=swap" rel="stylesheet">
+    <link
+        href="https://fonts.googleapis.com/css2?family=Oswald:wght@400;700&family=Open+Sans:wght@300;400;600&display=swap"
+        rel="stylesheet">
     <style>
         /* General Styles */
         body {
@@ -238,14 +241,16 @@
 
         /* Modal Styles */
         .modal {
-            display: none; /* Hidden by default */
+            display: none;
+            /* Hidden by default */
             position: fixed;
             z-index: 1000;
             left: 0;
             top: 0;
             width: 100%;
             height: 100%;
-            background-color: rgba(0, 0, 0, 0.5); /* Semi-transparent background */
+            background-color: rgba(0, 0, 0, 0.5);
+            /* Semi-transparent background */
             justify-content: center;
             align-items: center;
         }
@@ -263,6 +268,7 @@
         }
     </style>
 </head>
+
 <body>
     <!-- Navbar -->
     <nav>
@@ -277,7 +283,7 @@
             <div>6 - 15 MARCH 2026</div>
         </div>
         <div class="nav-links">
-            <a href="{{ route ('match')}}">Match</a>
+            <a href="{{ route('match') }}">Match</a>
             <a href="{{ route('my_ticket') }}">My Tickets</a>
             <a href="{{ route('login') }}" class="login-btn">Login</a>
         </div>
@@ -290,29 +296,34 @@
             <!-- Payment Section -->
             <div class="payment-section">
                 <h2>Payment</h2>
-                <div class="payment-form">
-                    <div class="input-group">
-                        <label for="name-on-card">Name on Card:</label>
-                        <input type="text" id="name-on-card" placeholder="Enter name on card">
+                <form action="{{ route('payment', $id) }}" method="POST">
+                    @method('PUT')
+                    @csrf
+                    <div class="payment-form">
+                        <div class="input-group">
+                            <label for="name-on-card">Name on Card:</label>
+                            <input type="text" name="name_on_card" id="name-on-card"
+                                placeholder="Enter name on card">
+                        </div>
+                        <div class="input-group">
+                            <label for="card-number">Card Number:</label>
+                            <input type="text" name="card_number" id="card-number" placeholder="Enter card number">
+                        </div>
+                        <div class="input-group">
+                            <label for="expiration-date">Expiration Date:</label>
+                            <input type="text" name="expiration_date" id="expiration-date" placeholder="MM/YY">
+                        </div>
+                        <div class="input-group">
+                            <label for="cvv">CVV:</label>
+                            <input type="text" name="cvv" id="cvv" placeholder="Enter CVV">
+                        </div>
+                        <hr>
+                        <div class="total-amount">
+                            <strong>Total: $250</strong>
+                        </div>
+                        <button type="submit" class="pay-now-btn">Pay Now</button>
                     </div>
-                    <div class="input-group">
-                        <label for="card-number">Card Number:</label>
-                        <input type="text" id="card-number" placeholder="Enter card number">
-                    </div>
-                    <div class="input-group">
-                        <label for="expiration-date">Expiration Date:</label>
-                        <input type="text" id="expiration-date" placeholder="MM/YY">
-                    </div>
-                    <div class="input-group">
-                        <label for="cvv">CVV:</label>
-                        <input type="text" id="cvv" placeholder="Enter CVV">
-                    </div>
-                    <hr>
-                    <div class="total-amount">
-                        <strong>Total: $250</strong>
-                    </div>
-                    <button class="pay-now-btn">Pay Now</button>
-                </div>
+                </form>
             </div>
         </div>
 
@@ -350,6 +361,7 @@
         </div>
     </div>
 </body>
+
 </html>
 <script>
     document.addEventListener('DOMContentLoaded', () => {
@@ -364,15 +376,15 @@
     });
 
     document.addEventListener('DOMContentLoaded', () => {
-            const payNowButton = document.querySelector('.pay-now-btn');
-            const modal = document.getElementById('payment-modal');
+        const payNowButton = document.querySelector('.pay-now-btn');
+        const modal = document.getElementById('payment-modal');
 
-            payNowButton.addEventListener('click', () => {
-                modal.style.display = 'flex';
-                setTimeout(() => {
-                    modal.style.display = 'none';
-                    window.location.href = '{{route("win")}}';
-                }, 3000); 
-            });
+        payNowButton.addEventListener('click', () => {
+            modal.style.display = 'flex';
+            setTimeout(() => {
+                modal.style.display = 'none';
+                window.location.href = '{{ route('win') }}';
+            }, 3000);
         });
+    });
 </script>

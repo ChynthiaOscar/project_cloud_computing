@@ -257,7 +257,8 @@
     </nav>
 
     <div class="outer-container">
-        <form class="container">
+        <form class="container" method="POST" action="{{ route('saveTickets') }}">
+            @csrf
             <div class="border-line">
                 <img class="logo" src="./assets/logo.png" alt="Logo">
             </div>
@@ -295,11 +296,10 @@
                 </div>
             </div>
             <div class="button">
-                <button type="button" class="btn" onclick="location.href='{{ route('information') }}'">Join
+                <button type="submit" class="btn"">Join
                     Now</button>
             </div>
-    </div>
-    </form>
+        </form>
     </div>
 </body>
 
@@ -359,7 +359,7 @@
             const sport = $('#sport').val();
             const nationality = $('#nationality').val();
             const type = $(this).val();
-            
+
 
             $.ajax({
                 url: '/get-price',
@@ -375,19 +375,19 @@
                     data.forEach(function(item) {
                         if (item.ticket_id == 1) {
                             $('#ticket_price').html('<div class="card">' +
-                            '<h3>VIP</h3>' +
-                            '<p>Price: $' + item.price + '</p>' +
-                            '</div>');
+                                '<h3>VIP</h3>' +
+                                '<p>Price: $' + item.price + '</p>' +
+                                '</div>');
                         } else if (item.ticket_id == 2) {
                             $('#ticket_price').append('<div class="card">' +
-                            '<h3>Premium</h3>' +
-                            '<p>Price: $' + item.price + '</p>' +
-                            '</div>');
+                                '<h3>Premium</h3>' +
+                                '<p>Price: $' + item.price + '</p>' +
+                                '</div>');
                         } else {
                             $('#ticket_price').append('<div class="card">' +
-                            '<h3>Standard</h3>' +
-                            '<p>Price: $' + item.price + '</p>' +
-                            '</div>');
+                                '<h3>Standard</h3>' +
+                                '<p>Price: $' + item.price + '</p>' +
+                                '</div>');
                         }
                     });
                 }

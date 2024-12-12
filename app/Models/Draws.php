@@ -18,11 +18,11 @@ class Draws extends Model
 
     public function account(): BelongsTo
     {
-        return $this->belongsTo(Account::class);
+        return $this->belongsTo(Account::class, 'account_id');
     }
 
     public function packages(): BelongsTo
     {
-        return $this->belongsTo(Packages::class);
+        return $this->belongsTo(Packages::class, 'package_id');
     }
 }
