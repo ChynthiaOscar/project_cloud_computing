@@ -51,8 +51,8 @@ Route::get('/data', [MatchesController::class, 'index'])->name('data')->middlewa
 // Get Nationality Ajax
 Route::post('/get-nationalities', action: [MatchesController::class, 'getNationalitiesBySport']);
 
-// Get Dates Ajax
-Route::post('/get-dates', [MatchesController::class, 'getDatesBySportAndNationality']);
+// Get Types Ajax
+Route::post('/get-types', [MatchesController::class, 'getTypeBySportAndNationality']);
 
 /* END DRAW TICKET */
 Route::get('/information', function () {
