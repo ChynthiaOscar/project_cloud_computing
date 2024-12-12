@@ -10,6 +10,8 @@ use Illuminate\Database\Eloquent\Relations\HasMany;
 class Matches extends Model
 {
     use HasFactory;
+
+    protected $table = "matches";
     protected $fillable = ['sports', 'home', 'away', 'date', 'type', 'status'];
 
     public function package_details(): HasMany {

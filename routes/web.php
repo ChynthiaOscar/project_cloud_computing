@@ -97,3 +97,6 @@ Route::get('/show_winners', function () {
 // for draw ticket API
 Route::post('/api/save-winner', [DrawController::class, 'saveWinners']);
 
+// for schdule filter ajax
+Route::get('/filter-matches', [MatchesController::class, 'filterMatches']);
+

@@ -164,7 +164,7 @@
 
         .card.main-card {
             display: flex;
-            flex-direction: column; 
+            flex-direction: column;
             justify-content: flex-start;
             align-items: stretch;
             padding: 16px;
@@ -183,13 +183,15 @@
         }
 
         .main-card .subtitle {
-            font-size: 1rem;
+            margin-top: 5vh;
+            font-size: 2rem;
             font-weight: 600;
             color: #333;
+            text-align: start;
         }
 
         .sub-card {
-            flex: 1; 
+            flex: 1;
             margin-bottom: 10px;
             padding: 16px;
             border: 2px solid #ccc;
@@ -200,7 +202,7 @@
 
         .sub-card-container {
             display: flex;
-            flex-direction: column; 
+            flex-direction: column;
             justify-content: space-between;
             height: 100%;
             margin-top: 20px;
@@ -243,38 +245,108 @@
 
     <div class="outer-container">
         <form class="container">
+            @php
+            use App\Models\Matches;
+            use Carbon\Carbon;
+            $matches = Matches::where('status', 1)->get()->groupBy('sports');
+
+            $groupedMatches = $matches->map(function ($sportGroup) {
+            return $sportGroup->groupBy(function ($match) {
+            return $match->stages;
+            });
+            });
+
+            $distinctSports = Matches::where('status', 1)
+            ->select('sports')
+            ->distinct()
+            ->orderBy('sports', 'asc')
+            ->get();
+
+            $distinctType = Matches::where('status', 1)
+            ->select('type')
+            ->distinct()
+            ->orderBy('type', 'asc')
+            ->get();
+            @endphp
             <div class="input-group-container">
                 <div class="input-group">
                     <label for="sport">Sport</label>
                     <select id="sport" name="sport" required>
-                        <option value="">Select a sport</option>
+                        <option value="">Select sport</option>
+                        @foreach ($distinctSports as $sportName )
+                        <option value="{{$sportName->sports}}">{{$sportName->sports}}</option>
+                        @endforeach
                     </select>
                 </div>
                 <div class="input-group">
                     <label for="date">Tipe</label>
-                    <select id="date" name="date" required>
+                    <select id="type" name="type" required>
                         <option value="">Select tipe</option>
+                        @foreach ($distinctType as $typeName )
+                        <option value="{{$typeName->type}}">{{$typeName->type}}</option>
+                        @endforeach
                     </select>
                 </div>
             </div>
 
-            <div class="card main-card">
-                <div class="title">ICE HOCKEY</div>
-                <div class="subtitle">7 February 2026</div>
-                <div class="sub-card-container">
-                    <div class="card sub-card">
-                        <div class="time">10:00 AM</div>
-                        <div class="teams">Team A vs Team B</div>
+            <div id="match-container"></div>
+
+            <div id="default-matches">
+                @foreach ($groupedMatches as $sportName => $sportGroup)
+                <div class="card main-card">
+                    <div class="title">{{ strtoupper($sportName) }}</div>
+                    @foreach ($sportGroup as $stageName => $stageGroup)
+                    <div class="subtitle">{{ $stageName }}</div>
+                    <div class="sub-card-container">
+                        @foreach ($stageGroup as $data)
+                        <div class="card sub-card">
+                            <div class="time">
+                                {{ Carbon::parse($data->start_time)->format('j F Y') }} - {{ Carbon::parse($data->start_time)->format('g:i A') }}
+                            </div>
+                            <div class="teams">{{ $data->home ?: 'n/a' }} vs {{ $data->away ?: 'n/a' }}</div>
+                            <div style='color: {{$data->type == 'Men' ? '#2594f5' : '#db4bc6'}} ;'>{{$data->type}}</div>
+                        </div>
+                        @endforeach
                     </div>
-                    <div class="card sub-card">
-                        <div class="time">12:00 PM</div>
-                        <div class="teams">Team C vs Team D</div>
-                    </div>
+                    @endforeach
                 </div>
+                @endforeach
             </div>
-            
+
         </form>
     </div>
 </body>
+<script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+<script>
+    $(document).ready(function () {
+        function fetchFilteredData() {
+            console.log('Fetching data...');
+            const sport = $('#sport').val();
+            const type = $('#type').val();
+
+            $.ajax({
+                url: '/filter-matches', // Update with your endpoint
+                method: 'GET',
+                data: {
+                    sport: sport,
+                    type: type
+                },
+                success: function (response) {
+                    // Hide the default matches section
+                    $('#default-matches').hide();
+
+                    // Update the match-container with the new data
+                    $('#match-container').html(response);
+                },
+                error: function (xhr) {
+                    console.error('Error fetching data:', xhr.responseText);
+                }
+            });
+        }
+
+        // Trigger data fetch on filter change
+        $('#sport, #type').on('change', fetchFilteredData);
+    });
+</script>
 
 </html>

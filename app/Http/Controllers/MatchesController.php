@@ -49,4 +49,18 @@ class MatchesController extends Controller
         return response()->json(isset($type) ? $type : []);
     }
 
+    public function filterMatches(Request $request)
+    {
+        $sport = $request->input('sport');
+        $type = $request->input('type');
+
+        $matches = Matches::where('status', 1)
+            ->when($sport, fn($query) => $query->where('sports', $sport))
+            ->when($type, fn($query) => $query->where('type', $type))
+            ->get()
+            ->groupBy('sports')
+            ->map(fn($sportGroup) => $sportGroup->groupBy('stages'));
+
+        return view('partials.matches', compact('matches'))->render();
+    }
 }
