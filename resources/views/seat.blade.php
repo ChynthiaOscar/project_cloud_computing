@@ -289,6 +289,12 @@
         </div>
     </nav>
 
+    @php
+        use App\Models\Tickets;
+        use App\Models\Tickets_Detail;
+        $ticketType = Tickets::all();
+    @endphp
+
     <!-- Main Content -->
     <div class="outer-container">
         <!-- Left Section -->
@@ -319,7 +325,8 @@
                         </div>
                         <hr>
                         <div class="total-amount">
-                            <strong>Total: $250</strong>
+                            <strong>Total: <span id="price"></span></strong>
+                            <input style="display: none;" id="tipe">
                         </div>
                         <button type="submit" class="pay-now-btn">Pay Now</button>
                     </div>
@@ -329,27 +336,28 @@
 
         <!-- Right Section -->
         <div class="card-section">
-            <div class="package-card">
-                <a href="#vip">
-                    <h4>VIP</h4>
-                    <p>Exclusive access to VIP areas</p>
-                    <div class="price">$450</div>
-                </a>
-            </div>
-            <div class="package-card">
-                <a href="#premium">
-                    <h4>PREMIUM</h4>
-                    <p>Premium seating and benefits</p>
-                    <div class="price">$350</div>
-                </a>
-            </div>
-            <div class="package-card">
-                <a href="#standard">
-                    <h4>STANDARD</h4>
-                    <p>Standard seating</p>
-                    <div class="price">$250</div>
-                </a>
-            </div>
+            @foreach ($ticketType as $type)
+                <div class="package-card">
+                    <a href="#vip">
+                        <h4>{{ $type->type }}</h4>
+                        @if ($type->type == 'VIP')
+                            <p>Exclusive access to VIP areas</p>
+                        @elseif ($type->type == 'Premium')
+                            <p>Premium seating and benefits</p>
+                        @else
+                            <p>Standard seating</p>
+                        @endif
+
+                        @php
+                            $price = Tickets_Detail::get()
+                                ->where('package_id', $id)
+                                ->where('ticket_id', $type->id)
+                                ->first();
+                        @endphp
+                        <div class="price">${{ $price->price }}</div>
+                    </a>
+                </div>
+            @endforeach
         </div>
     </div>
 
@@ -371,6 +379,10 @@
             card.addEventListener('click', (e) => {
                 packageCards.forEach(c => c.classList.remove('active'));
                 e.currentTarget.classList.add('active');
+                document.getElementById('price').innerText = e.currentTarget.querySelector(
+                    '.price').innerText;
+                document.getElementById('tipe').value = e.currentTarget.querySelector('.price')
+                    .innerText;
             });
         });
     });
