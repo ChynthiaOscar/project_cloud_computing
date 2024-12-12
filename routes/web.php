@@ -54,6 +54,9 @@ Route::post('/get-nationalities', action: [MatchesController::class, 'getNationa
 // Get Types Ajax
 Route::post('/get-types', [MatchesController::class, 'getTypeBySportAndNationality']);
 
+// Get Ticket Price
+Route::post('/get-price', [MatchesController::class, 'getTicketPrice']);
+
 /* END DRAW TICKET */
 Route::get('/information', function () {
     return view('information');

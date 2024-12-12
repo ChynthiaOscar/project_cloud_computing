@@ -291,19 +291,7 @@
                     <p>Here is the pricing information for the packages available for specific sports. <br>Please review
                         the details and feel free to purchase tickets for the sport you love most!</p>
                 </div>
-                <div class="cards">
-                    <div class="card">
-                        <h3>Standard</h3>
-                        <p>Price: $50</p>
-                    </div>
-                    <div class="card">
-                        <h3>Premium</h3>
-                        <p>Price: $100</p>
-                    </div>
-                    <div class="card">
-                        <h3>VIP</h3>
-                        <p>Price: $150</p>
-                    </div>
+                <div id="ticket_price" class="cards">
                 </div>
             </div>
             <div class="button">
@@ -362,6 +350,45 @@
                     data.forEach(function(item) {
                         $('#type').append('<option value="' + item + '">' +
                             item + '</option>');
+                    });
+                }
+            });
+        });
+
+        $('#type').change(function() {
+            const sport = $('#sport').val();
+            const nationality = $('#nationality').val();
+            const type = $(this).val();
+            
+
+            $.ajax({
+                url: '/get-price',
+                type: 'POST',
+                data: {
+                    sport: sport,
+                    nationality: nationality,
+                    type: type,
+                    _token: '{{ csrf_token() }}'
+                },
+                success: function(data) {
+                    console.log(data);
+                    data.forEach(function(item) {
+                        if (item.ticket_id == 1) {
+                            $('#ticket_price').html('<div class="card">' +
+                            '<h3>VIP</h3>' +
+                            '<p>Price: $' + item.price + '</p>' +
+                            '</div>');
+                        } else if (item.ticket_id == 2) {
+                            $('#ticket_price').append('<div class="card">' +
+                            '<h3>Premium</h3>' +
+                            '<p>Price: $' + item.price + '</p>' +
+                            '</div>');
+                        } else {
+                            $('#ticket_price').append('<div class="card">' +
+                            '<h3>Standard</h3>' +
+                            '<p>Price: $' + item.price + '</p>' +
+                            '</div>');
+                        }
                     });
                 }
             });

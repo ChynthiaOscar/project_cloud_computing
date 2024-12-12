@@ -9,6 +9,7 @@ use Illuminate\Database\Eloquent\Factories\HasFactory;
 class Tickets_Detail extends Model
 {
     use HasFactory;
+    protected $table = 'tickets_details';
     protected $fillable = ['package_id', 'ticket_id', 'quota'];
 
     public function tickets(): BelongsTo {

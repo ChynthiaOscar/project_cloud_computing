@@ -3,8 +3,13 @@
 namespace App\Http\Controllers;
 
 use App\Models\Matches;
+use App\Models\Tickets;
+use App\Models\Packages;
+use App\Models\Tickets_Detail;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\Log;
+use Psy\Readline\Hoa\Console;
 
 class MatchesController extends Controller
 {
@@ -47,6 +52,18 @@ class MatchesController extends Controller
         })->unique()->values();
 
         return response()->json(isset($type) ? $type : []);
+    }
+
+    public function getTicketPrice(Request $request)
+    {
+        $sport = $request->input('sport');
+        $nationality = $request->input('nationality');
+        $type = $request->input('type');
+
+        $package = Packages::get()->where('sports', $sport)->where('nationality', $nationality)->where('type', $type)->first();
+        $data = Tickets_Detail::get()->where('package_id', $package->id)->values();
+        
+        return response()->json(isset($data) ? $data : []);
     }
 
     public function filterMatches(Request $request)
