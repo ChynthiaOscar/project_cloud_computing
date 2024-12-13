@@ -24,7 +24,7 @@ class PackagesController extends Controller
         $formfield = $request->validate([
             'name_on_card' => 'required|string',
             'card_number' => 'required|string',
-            'expiration_date' => 'required|date',
+            'expiration_date' => 'required|string',
             'cvv' => 'required|string',
             'tickets_id' => 'required',
         ]);
