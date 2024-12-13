@@ -111,7 +111,6 @@
             flex-direction: column;
             justify-content: flex-start;
             width: 100%;
-            height: 520px;
             border: 5px solid #EE334E;
             padding: 20px;
             background-color: #ffffff;
