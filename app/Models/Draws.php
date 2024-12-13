@@ -13,7 +13,8 @@ class Draws extends Model
     protected $fillable = [
         'account_id',  // Replace with the correct field name
         'package_id',    // Add other fields if needed
-        'status'
+        'status',
+        'ticket_id'
     ];
 
     public function account(): BelongsTo

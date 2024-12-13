@@ -326,7 +326,7 @@
                         <hr>
                         <div class="total-amount">
                             <strong>Total: <span id="price"></span></strong>
-                            <input style="display: none;" id="tipe">
+                            <input style="display: none;" id="tipe" name="tickets_id">
                         </div>
                         <button type="submit" class="pay-now-btn">Pay Now</button>
                     </div>
@@ -337,8 +337,14 @@
         <!-- Right Section -->
         <div class="card-section">
             @foreach ($ticketType as $type)
-                <div class="package-card">
-                    <a href="#vip">
+            @php
+                $quota = Tickets_Detail::get()
+                    ->where('package_id', $id)
+                    ->where('ticket_id', $type->id)->first();
+            @endphp
+                <div class="package-card" style="display: {{ $quota->quota == '0' ? 'none' : 'block' }};">
+                    <a>
+                        <p style="display: none;" id="ticket_id">{{ $type->id }}</p>
                         <h4>{{ $type->type }}</h4>
                         @if ($type->type == 'VIP')
                             <p>Exclusive access to VIP areas</p>
@@ -381,8 +387,9 @@
                 e.currentTarget.classList.add('active');
                 document.getElementById('price').innerText = e.currentTarget.querySelector(
                     '.price').innerText;
-                document.getElementById('tipe').value = e.currentTarget.querySelector('.price')
-                    .innerText;
+                document.getElementById('tipe').value = e.currentTarget.querySelector(
+                    '#ticket_id').innerText;
+                console.log(document.getElementById('tipe').value);
             });
         });
     });
