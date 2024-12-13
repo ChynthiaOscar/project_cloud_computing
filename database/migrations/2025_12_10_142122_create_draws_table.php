@@ -18,6 +18,8 @@ return new class extends Migration
             $table->bigInteger('package_id')->unsigned();
             $table->foreign('package_id')->references('id')->on('packages')->onDelete('cascade');
             $table->bigInteger('status');
+            $table->unsignedBigInteger('ticket_id')->nullable();
+            $table->foreign('ticket_id')->references('id')->on('tickets')->onDelete('cascade');
             $table->timestamps();
         });
     }

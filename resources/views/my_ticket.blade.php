@@ -5,7 +5,9 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>User Login</title>
-    <link href="https://fonts.googleapis.com/css2?family=Oswald:wght@400;700&family=Open+Sans:wght@300;400;600&display=swap" rel="stylesheet">
+    <link
+        href="https://fonts.googleapis.com/css2?family=Oswald:wght@400;700&family=Open+Sans:wght@300;400;600&display=swap"
+        rel="stylesheet">
     <style>
         /* General Styles */
         body {
@@ -109,7 +111,6 @@
             flex-direction: column;
             justify-content: flex-start;
             width: 100%;
-            height: 520px;
             border: 5px solid #EE334E;
             padding: 20px;
             background-color: #ffffff;
@@ -183,7 +184,8 @@
 
         /* Modal Styles */
         .modal {
-            display: none; /* Hidden by default */
+            display: none;
+            /* Hidden by default */
             position: fixed;
             z-index: 1000;
             left: 0;
@@ -220,7 +222,6 @@
             border-radius: 50%;
             cursor: pointer;
         }
-
     </style>
 </head>
 
@@ -238,11 +239,29 @@
             <div>6 - 15 MARCH 2026</div>
         </div>
         <div class="nav-links">
-            <a href="{{ route ('match')}}">Match</a>
+            <a href="{{ route('match') }}">Match</a>
             <a href="{{ route('my_ticket') }}">My Tickets</a>
             <a href="{{ route('login') }}" class="login-btn">Login</a>
         </div>
     </nav>
+
+    @php
+        use App\Models\Draws;
+        use App\Models\Packages;
+        use App\Models\Tickets;
+        use App\Models\Tickets_Detail;
+        use App\Models\Packages_Detail;
+        use Carbon\Carbon;
+
+        $user = Auth::guard('account')->user()->id;
+        $draw = Draws::get()->where('account_id', $user)->where('status', '2');
+        $package = Packages::get()->whereIn('id', $draw->pluck('package_id'));
+        $ticket = Tickets::get()->whereIn('id', $draw->pluck('ticket_id'));
+        $details = Tickets_Detail::get()
+            ->whereIn('ticket_id', $ticket->pluck('id'))
+            ->whereIn('package_id', $package->pluck('id'));
+        $pDetails = Packages_Detail::get()->whereIn('package_id', $package->pluck('id'));
+    @endphp
 
     <!-- Login Section -->
     <div class="outer-container">
@@ -253,23 +272,29 @@
             </div>
 
             <!-- Card Section -->
-            <div class="card" id="ticketCard">
-                <!-- Left Section -->
-                <div class="left-section">
-                    <h3>WINTER OLYMPIC 2026</h3>
-                    <p><strong>Sport:</strong> Ice Hockey</p>
-                    <p><strong>Nationality:</strong> USA</p>
-                    <p><strong>Date & Time:</strong> 6th February 2026, 3:00 PM</p>
-                </div>
+            @foreach ($package as $key => $p)
+                <div class="card" id="ticketCard">
+                    <!-- Left Section -->
+                    <div class="left-section">
+                        <h3>WINTER OLYMPIC 2026</h3>
+                        <p><strong>Sport:</strong> {{ $p->sports }}</p>
+                        <p><strong>Nationality:</strong> {{ $p->nationality }}</p>
+                        <p><strong>Date & Time:</strong>
+                            @foreach ($pDetails as $pD)
+                                {{ Carbon::parse($pD->matches->start_time)->format('j F Y') }},
+                                {{ Carbon::parse($pD->matches->start_time)->format('g:i A') }} <strong>|</strong>
+                            @endforeach
+                        </p>
+                    </div>
 
-                <!-- Right Section -->
-                <div class="right-section">
-                    <h4>STANDARD</h4>
-                    <p>Standard seating</p>
-                    <div class="price">$250</div>
+                    <!-- Right Section -->
+                    <div class="right-section">
+                        <h4>{{ $ticket[$key]->type }}</h4>
+                        <p>{{ $ticket[$key]->type }} seating</p>
+                        <div class="price">${{ $details[$key]->price }}</div>
+                    </div>
                 </div>
-            </div>
-
+            @endforeach
         </div>
     </div>
 

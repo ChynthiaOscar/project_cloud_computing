@@ -12,6 +12,10 @@ class Tickets extends Model
     protected $fillable = ['type', 'price'];
 
     public function ticket_details(): HasMany {
-        return $this->hasMany(Tickets_Detail::class);
+        return $this->hasMany(Tickets_Detail::class, 'ticket_id', 'id');
+    }
+
+    public function draws(): HasMany {
+        return $this->hasMany(Draws::class, 'ticket_id', 'id');
     }
 }

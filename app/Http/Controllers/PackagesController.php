@@ -25,7 +25,8 @@ class PackagesController extends Controller
             'name_on_card' => 'required|string',
             'card_number' => 'required|string',
             'expiration_date' => 'required|date',
-            'cvv' => 'required|string'
+            'cvv' => 'required|string',
+            'tickets_id' => 'required',
         ]);
 
         if (!$formfield) {
@@ -36,9 +37,9 @@ class PackagesController extends Controller
 
         if ($formfield['name_on_card'] == $card->name_on_card && $formfield['card_number'] == $card->card_number && $formfield['expiration_date'] == $card->expiration_date && $formfield['cvv'] == $card->cvv) {
             $draw = Draws::get()->where('account_id', $user)->where('package_id', $id)->first();
-            $draw->update(['status' => '2']);
+            $draw->update(['status' => '2', 'ticket_id' => $formfield['tickets_id']]);
 
-            $ticket = Tickets_Detail::get()->where('package_id', $id)->first();
+            $ticket = Tickets_Detail::get()->where('package_id', $id)->where('ticket_id', $formfield['tickets_id'])->first();
             $count = $ticket->quota - 1;
             $ticket->update(['quota' => $count]);
 

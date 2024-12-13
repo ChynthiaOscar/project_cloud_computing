@@ -13,7 +13,8 @@ class Draws extends Model
     protected $fillable = [
         'account_id',  // Replace with the correct field name
         'package_id',    // Add other fields if needed
-        'status'
+        'status',
+        'ticket_id'
     ];
 
     public function account(): BelongsTo
@@ -24,5 +25,10 @@ class Draws extends Model
     public function packages(): BelongsTo
     {
         return $this->belongsTo(Packages::class, 'package_id');
+    }
+
+    public function tickets(): BelongsTo
+    {
+        return $this->belongsTo(Tickets::class, 'ticket_id', 'id');
     }
 }

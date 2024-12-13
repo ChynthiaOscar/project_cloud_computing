@@ -44,7 +44,7 @@ class TicketsDetailSeeder extends Seeder
         DB::table('tickets_details')->insert([
             'package_id' => 2,
             'ticket_id' => 1,
-            'quota' => 5,
+            'quota' => 2,
             'price' => 500,
             'created_at' => now(),
             'updated_at' => now(),
@@ -62,7 +62,7 @@ class TicketsDetailSeeder extends Seeder
         DB::table('tickets_details')->insert([
             'package_id' => 2,
             'ticket_id' => 3,
-            'quota' => 2,
+            'quota' => 5,
             'price' => 200,
             'created_at' => now(),
             'updated_at' => now(),
@@ -71,7 +71,7 @@ class TicketsDetailSeeder extends Seeder
         DB::table('tickets_details')->insert([
             'package_id' => 3,
             'ticket_id' => 1,
-            'quota' => 3,
+            'quota' => 2,
             'price' => 500,
             'created_at' => now(),
             'updated_at' => now(),
@@ -80,7 +80,7 @@ class TicketsDetailSeeder extends Seeder
         DB::table('tickets_details')->insert([
             'package_id' => 3,
             'ticket_id' => 2,
-            'quota' => 2,
+            'quota' => 3,
             'price' => 300,
             'created_at' => now(),
             'updated_at' => now(),
