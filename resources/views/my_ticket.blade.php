@@ -292,7 +292,7 @@
                     <div class="right-section">
                         <h4>{{ $ticket[$index]->type }}</h4>
                         <p>{{ $ticket[$index]->type }} seating</p>
-                        <div class="price">{{ $details->price }}</div>
+                        <div class="price">${{ $details->price }}</div>
                     </div>
                 </div>
                 @php
