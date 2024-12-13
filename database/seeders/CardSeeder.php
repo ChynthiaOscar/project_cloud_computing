@@ -27,5 +27,41 @@ class CardSeeder extends Seeder
             'created_at' => now(),
             'updated_at' => now(),
         ]);
+        DB::table('cards')->insert([
+            'account_id' => 2,
+            'name_on_card' => 'Kevin',
+            'card_number' => '0239382302302',
+            'expiration_date'=> '12/2024',
+            'cvv'=> '133',
+            'created_at' => now(),
+            'updated_at' => now(),
+        ]);
+        DB::table('cards')->insert([
+            'account_id' => 3,
+            'name_on_card' => 'Valiant',
+            'card_number' => '0239382302302',
+            'expiration_date'=> '12/2024',
+            'cvv'=> '133',
+            'created_at' => now(),
+            'updated_at' => now(),
+        ]);
+        DB::table('cards')->insert([
+            'account_id' => 4,
+            'name_on_card' => 'Chynthia',
+            'card_number' => '0239382302302',
+            'expiration_date'=> '12/2024',
+            'cvv'=> '133',
+            'created_at' => now(),
+            'updated_at' => now(),
+        ]);
+        DB::table('cards')->insert([
+            'account_id' => 5,
+            'name_on_card' => 'Budi',
+            'card_number' => '0239382302302',
+            'expiration_date'=> '12/2024',
+            'cvv'=> '133',
+            'created_at' => now(),
+            'updated_at' => now(),
+        ]);
     }
 }
