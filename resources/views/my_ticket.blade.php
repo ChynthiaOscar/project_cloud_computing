@@ -255,9 +255,6 @@
 
         $user = Auth::guard('account')->user()->id;
         $draw = Draws::get()->where('account_id', $user)->where('status', '2');
-        $package = Packages::get()->whereIn('id', $draw->pluck('package_id'));
-        $ticket = Tickets::get()->whereIn('id', $draw->pluck('ticket_id'));
-        $index = 0;
     @endphp
 
     <!-- Login Section -->
@@ -269,17 +266,19 @@
             </div>
 
             <!-- Card Section -->
-            @foreach ($package as $key => $p)
+            @foreach ($draw as $d)
                 @php
-                    $pDetails = Packages_Detail::get()->where('package_id', $p->id);
-                    $details = Tickets_Detail::get()->where('ticket_id', $ticket[$index]->id)->where('package_id', $p->id)->first();
+                    $package = Packages::get()->where('id', $d->package_id)->first();
+                    $ticket = Tickets::get()->where('id', $d->ticket_id)->first();
+                    $pDetails = Packages_Detail::get()->where('package_id', $package->id);
+                    $tDetails = Tickets_Detail::get()->where('ticket_id', $d->ticket_id)->first();
                 @endphp
                 <div class="card" id="ticketCard">
                     <!-- Left Section -->
                     <div class="left-section">
                         <h3>WINTER OLYMPIC 2026</h3>
-                        <p><strong>Sport:</strong> {{ $p->sports }}</p>
-                        <p><strong>Nationality:</strong> {{ $p->nationality }}</p>
+                        <p><strong>Sport:</strong> {{ $package->sports }}</p>
+                        <p><strong>Nationality:</strong> {{ $package->nationality }}</p>
                         <p><strong>Date & Time:</strong>
                             @foreach ($pDetails as $pD)
                                 {{ Carbon::parse($pD->matches->start_time)->format('j F Y') }},
@@ -290,14 +289,11 @@
 
                     <!-- Right Section -->
                     <div class="right-section">
-                        <h4>{{ $ticket[$index]->type }}</h4>
-                        <p>{{ $ticket[$index]->type }} seating</p>
-                        <div class="price">${{ $details->price }}</div>
+                        <h4>{{ $ticket->type }}</h4>
+                        <p>{{ $ticket->type }} seating</p>
+                        <div class="price">${{ $tDetails->price }}</div>
                     </div>
                 </div>
-                @php
-                    $index++;
-                @endphp
             @endforeach
         </div>
     </div>
