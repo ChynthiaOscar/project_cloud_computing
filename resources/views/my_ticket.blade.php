@@ -257,7 +257,7 @@
         $draw = Draws::get()->where('account_id', $user)->where('status', '2');
         $package = Packages::get()->whereIn('id', $draw->pluck('package_id'));
         $ticket = Tickets::get()->whereIn('id', $draw->pluck('ticket_id'));
-
+        $index = 0;
     @endphp
 
     <!-- Login Section -->
@@ -269,10 +269,10 @@
             </div>
 
             <!-- Card Section -->
-            @foreach ($package as $p)
+            @foreach ($package as $key => $p)
                 @php
-                    $index = 0;
                     $pDetails = Packages_Detail::get()->where('package_id', $p->id);
+                    $details = Tickets_Detail::get()->where('ticket_id', $ticket[$index]->id)->where('package_id', $p->id)->first();
                 @endphp
                 <div class="card" id="ticketCard">
                     <!-- Left Section -->
@@ -290,11 +290,14 @@
 
                     <!-- Right Section -->
                     <div class="right-section">
-                        <h4>{{ $ticket[$index++]->type }}</h4>
-                        <p>{{ $ticket[$index++]->type }} seating</p>
-                        <div class="price"></div>
+                        <h4>{{ $ticket[$index]->type }}</h4>
+                        <p>{{ $ticket[$index]->type }} seating</p>
+                        <div class="price">{{ $details->price }}</div>
                     </div>
                 </div>
+                @php
+                    $index++;
+                @endphp
             @endforeach
         </div>
     </div>
