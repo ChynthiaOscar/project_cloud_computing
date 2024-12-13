@@ -317,7 +317,7 @@
                         </div>
                         <div class="input-group">
                             <label for="expiration-date">Expiration Date:</label>
-                            <input type="text" name="expiration_date" id="expiration-date" placeholder="MM/YY">
+                            <input type="text" name="expiration_date" id="expiration-date" placeholder="MM/YYYY">
                         </div>
                         <div class="input-group">
                             <label for="cvv">CVV:</label>

@@ -71,19 +71,19 @@ Route::put('/payment/{id}', [PackagesController::class, 'payment'])->name('payme
 
 Route::get('/information', function () {
     return view('information');
-})->name('information');
+})->name('information')->middleware('auth:account');
 
 Route::get('/my_ticket', function () {
     return view('my_ticket');
-})->name('my_ticket');
+})->name('my_ticket')->middleware('auth:account');
 
 Route::get('/win', function () {
     return view('win');
-})->name('win');
+})->name('win')->middleware('auth:account');;
 
 Route::get('/lose', function () {
     return view('lose');
-})->name('lose');
+})->name('lose')->middleware('auth:account');
 
 Route::get('/seat/{id}', [PackagesController::class, 'index'])->name('seat');
 
@@ -93,13 +93,6 @@ Route::get('/match', function () {
 })->name('match');
 
 Route::put('/save_about_me/{id}', [AccountController::class, 'update'])->name('about');
-
-Route::get("/run-migration", function () {
-    Artisan::call("optimize:clear");
-    Artisan::call("migrate:refresh --seed");
-
-    return "Migrations executed successfully.";
-});
 
 Route::get('/show_winners', function () {
     return view('show_winners');

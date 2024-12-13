@@ -22,7 +22,7 @@ class CardSeeder extends Seeder
             'account_id' => 1,
             'name_on_card' => 'Richard',
             'card_number' => '0239382302302',
-            'expiration_date'=> $mysqlDate,
+            'expiration_date'=> '12/2024',
             'cvv'=> '133',
             'created_at' => now(),
             'updated_at' => now(),

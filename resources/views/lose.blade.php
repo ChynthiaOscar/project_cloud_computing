@@ -168,10 +168,10 @@
     <div class="outer-container">
         <div class="container">
             <p class="message">
-                Sorry, you were unlucky in this ticket draw. Please check again for the next draw on <br><br><strong>JUNE 26, 2025 at 00:00</strong>
+                Sorry, you were unlucky in this ticket draw. 
             </p>
             <p class="additional-message">
-                Thank you for participating in this ticket draw, and we hope you are lucky enough to get the chance to purchase tickets in the next draw.
+                Thank you for participating in this ticket draw, and we hope you are lucky enough to get the chance to purchase tickets in the next Olympics.
             </p>
         </div>
     </div>

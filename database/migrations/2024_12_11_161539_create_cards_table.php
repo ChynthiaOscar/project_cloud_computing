@@ -17,7 +17,7 @@ return new class extends Migration
             $table->foreign(columns: 'account_id')->references('id')->on('accounts')->onDelete('cascade');
             $table->string('name_on_card');
             $table->string('card_number');
-            $table->date('expiration_date');
+            $table->string('expiration_date');
             $table->string('cvv');
             $table->timestamps();
         });
