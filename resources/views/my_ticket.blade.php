@@ -267,60 +267,71 @@
 
             <!-- Card Section -->
             @foreach ($draw as $d)
-                @php
-                    $package = Packages::get()->where('id', $d->package_id)->first();
-                    $ticket = Tickets::get()->where('id', $d->ticket_id)->first();
-                    $pDetails = Packages_Detail::get()->where('package_id', $package->id);
-                    $tDetails = Tickets_Detail::get()->where('ticket_id', $d->ticket_id)->first();
-                @endphp
-                <div class="card" id="ticketCard">
-                    <!-- Left Section -->
-                    <div class="left-section">
-                        <h3>WINTER OLYMPIC 2026</h3>
-                        <p><strong>Sport:</strong> {{ $package->sports }}</p>
-                        <p><strong>Nationality:</strong> {{ $package->nationality }}</p>
-                        <p><strong>Date & Time:</strong>
-                            @foreach ($pDetails as $pD)
-                                {{ Carbon::parse($pD->matches->start_time)->format('j F Y') }},
-                                {{ Carbon::parse($pD->matches->start_time)->format('g:i A') }} <strong>|</strong>
-                            @endforeach
-                        </p>
-                    </div>
-
-                    <!-- Right Section -->
-                    <div class="right-section">
-                        <h4>{{ $ticket->type }}</h4>
-                        <p>{{ $ticket->type }} seating</p>
-                        <div class="price">${{ $tDetails->price }}</div>
-                    </div>
+            @php
+                $package = Packages::get()->where('id', $d->package_id)->first();
+                $ticket = Tickets::get()->where('id', $d->ticket_id)->first();
+                $pDetails = Packages_Detail::get()->where('package_id', $package->id);
+                $tDetails = Tickets_Detail::get()->where('ticket_id', $d->ticket_id)->first();
+            @endphp
+            <div class="card" id="ticketCard{{ $d->id }}" data-modal="barcodeModal{{ $d->id }}">
+                <!-- Left Section -->
+                <div class="left-section">
+                    <h3>WINTER OLYMPIC 2026</h3>
+                    <p><strong>Sport:</strong> {{ $package->sports }}</p>
+                    <p><strong>Nationality:</strong> {{ $package->nationality }}</p>
+                    <p><strong>Date & Time:</strong>
+                        @foreach ($pDetails as $pD)
+                            {{ Carbon::parse($pD->matches->start_time)->format('j F Y') }},
+                            {{ Carbon::parse($pD->matches->start_time)->format('g:i A') }} <strong>|</strong>
+                        @endforeach
+                    </p>
                 </div>
-            @endforeach
-        </div>
-    </div>
 
-    <!-- Modal for Barcode -->
-    <div class="modal" id="barcodeModal">
-        <div class="modal-content">
-            <button class="close-btn" id="closeModalBtn">X</button>
-            <img src="./assets/barcode.png" alt="Ticket Barcode">
-        </div>
-    </div>
+                <!-- Right Section -->
+                <div class="right-section">
+                    <h4>{{ $ticket->type }}</h4>
+                    <p>{{ $ticket->type }} seating</p>
+                    <div class="price">${{ $tDetails->price }}</div>
+                </div>
+            </div>
+
+            <!-- Modal for Barcode -->
+            <div class="modal" id="barcodeModal{{ $d->id }}">
+                <div class="modal-content">
+                    <button class="close-btn closeModalBtn">X</button>
+                    <img src="./assets/qr.png" alt="Ticket Barcode" style="width: 50vh; height: 50vh;">
+                </div>
+            </div>
+        @endforeach
+
 
     <script>
-        const ticketCard = document.getElementById("ticketCard");
-        const barcodeModal = document.getElementById("barcodeModal");
-        const closeModalBtn = document.getElementById("closeModalBtn");
-        ticketCard.addEventListener("click", function() {
-            barcodeModal.style.display = "flex";
+        // Find all ticket cards and modals
+        document.querySelectorAll('.card').forEach(card => {
+            card.addEventListener('click', function () {
+                const modalId = this.getAttribute('data-modal');
+                const modal = document.getElementById(modalId);
+                if (modal) {
+                    modal.style.display = 'flex';
+                }
+            });
         });
-        closeModalBtn.addEventListener("click", function() {
-            barcodeModal.style.display = "none";
+
+        // Close modal buttons
+        document.querySelectorAll('.closeModalBtn').forEach(btn => {
+            btn.addEventListener('click', function () {
+                const modal = this.closest('.modal');
+                modal.style.display = 'none';
+            });
         });
-        window.addEventListener("click", function(event) {
-            if (event.target === barcodeModal) {
-                barcodeModal.style.display = "none";
+
+        // Close modal when clicking outside
+        window.addEventListener('click', function (event) {
+            if (event.target.classList.contains('modal')) {
+                event.target.style.display = 'none';
             }
         });
+
     </script>
 </body>
 
